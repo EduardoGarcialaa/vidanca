@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vidança - Contato</title>
+
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Garamond:wght@700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <style>
+        /* Importa fontes adicionais do Google Fonts. */
+        @import url('https://fonts.googleapis.com/css2?family=Alan+Sans:wght@300..900&family=Inter:wght@100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+        /* Define variáveis CSS (--nome-variavel: valor;) para cores reutilizáveis. */
+        /* Isso facilita a manutenção: mude a cor em um só lugar. */
+        :root {
+            --cor-acento-quente: #c67a49; /* Terracota (da Imagem 1) */
+            --cor-acento-vibrante: #C0392B; /* Vermelho (da Imagem 2) */
+            --cor-texto: #333; /* Cinza escuro (para texto sobre fundo claro) */
+            --cor-texto-claro: #f0f0f0; /* Cinza claro/branco suave (para texto sobre fundo escuro) */
+            --cor-texto-medio: #bbbbbb; /* Cinza médio */
+            --cor-fundo-info: #ffffff; /* Branco (para os cards) */
+            --cor-fundo-escuro: #1a1a1a; /* Preto suave (para seção de localização e rodapé) */
+        }
+
+        /* Estiliza o corpo (fundo) da página. */
+        body {
+            /* Define a imagem de fundo (Festival Elo). */
+            background-image:
+                url('https://assets.website-files.com/565f9056d3eed3ef65c47c2e/5e2281f92e290ce10ec464c1_festival-elo2.jpg');
+            background-size: cover; /* Faz a imagem cobrir toda a área. */
+            background-position: center center; /* Centraliza a imagem. */
+            background-repeat: no-repeat; /* Evita repetição da imagem. */
+            background-attachment: fixed; /* Efeito Parallax (imagem fixa ao rolar). */
+            
+            margin: 0; /* Remove margens padrão do navegador. */
+            padding: 0; /* Remove preenchimentos padrão. */
+            font-family: 'Lato', sans-serif; /* Define a fonte padrão. */
+        }
+
+        /* Estiliza a seção "Hero" (banner do topo). */
+        .contato-hero {
+            position: relative; /* Base para posicionamento. */
+            height: 50vh; /* Altura de 50% da altura da janela. */
+            min-height: 300px; /* Altura mínima. */
+            /* Adiciona um overlay escuro SOBRE a imagem de fundo, APENAS nesta seção. */
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+            display: flex; /* Habilita Flexbox. */
+            align-items: center; /* Alinha H1 verticalmente. */
+            justify-content: center; /* Alinha H1 horizontalmente. */
+            /* Estado inicial da animação (escondido). */
+            opacity: 0;
+            transform: translateY(30px); /* Começa 30px abaixo. */
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Define a animação. */
+            color: #ffffff; /* Cor do texto padrão para esta seção. */
+        }
+        /* Estiliza o H1 dentro do Hero. */
+        .contato-hero h1 {
+            font-family: 'Playfair Display', serif; /* Fonte elegante. */
+            font-size: 3.5rem; /* Tamanho. */
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8); /* Sombra para legibilidade. */
+            margin: 0; /* Remove margem padrão. */
+        }
+
+        /* Estiliza o container com fundo PRETO translúcido. */
+        .content-overlay-container {
+            padding: 20px 0; /* Espaçamento interno vertical. */
+            /* Fundo preto com 70% de opacidade. */
+            background-color: rgba(0, 0, 0, 0.7);
+            color: var(--cor-texto-claro); /* Texto claro SOBRE este overlay. */
+            /* Não tem animação própria. */
+        }
+
+        /* Estiliza o wrapper que centraliza os cards de contato DENTRO do overlay. */
+        .contato-lista-wrapper {
+            max-width: 500px; /* Largura máxima dos cards. */
+            margin: 0 auto; /* Centraliza horizontalmente. */
+            padding: 0 20px; /* Espaçamento lateral interno. */
+        }
+
+        /* Estiliza cada bloco ('card') de informação. */
+        .info-bloco {
+            background-color: var(--cor-fundo-info); /* Fundo branco. */
+            color: var(--cor-texto); /* Texto escuro dentro do card. */
+            padding: 25px; /* Espaçamento interno. */
+            border-radius: 4px; /* Cantos 'quadrados'. */
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08); /* Sombra suave. */
+            margin-bottom: 25px; /* Espaço entre os cards. */
+            border-left: none; /* Remove borda esquerda. */
+            /* Estado inicial da animação (escondido). */
+            opacity: 0;
+            transform: translateY(30px);
+            /* Define a animação (opacidade, posição Y, sombra, transformação). */
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out,
+                        box-shadow 0.3s ease-out, transform 0.3s ease-out;
+        }
+        /* Efeito ao passar o mouse (:hover) sobre um card JÁ VISÍVEL. */
+        .info-bloco.is-visible:hover {
+            transform: translateY(-5px); /* Levanta o card. */
+            box-shadow: 0 6px 15px rgba(0,0,0,0.12); /* Sombra mais forte. */
+        }
+
+        /* Define o estado final (visível) para todos os elementos animados. */
+        /* A classe '.is-visible' é adicionada/removida pelo JavaScript. */
+        .contato-hero.is-visible,
+        .info-bloco.is-visible,
+        .mapa-coluna.is-visible,
+        .endereco-coluna.is-visible {
+            opacity: 1; /* Totalmente visível. */
+            transform: translateY(0); /* Posição Y original. */
+        }
+
+        /* Estiliza o container de cada item (ícone + texto). */
+        .info-item {
+            display: flex; /* Alinha ícone e texto lado a lado. */
+            align-items: center; /* Alinha verticalmente. */
+            font-family: 'Lato', sans-serif; /* Fonte padrão do texto. */
+            line-height: 1.6; /* Altura da linha. */
+        }
+        /* Estiliza o ícone (tag <i>). */
+        .info-item i {
+            font-size: 20px; /* Tamanho do ícone. */
+            width: 50px; /* Largura do círculo. */
+            height: 50px; /* Altura do círculo. */
+            background-color: #eee; /* Fundo cinza claro (padrão para cards brancos). */
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1); /* Sombra do círculo. */
+            border-radius: 50%; /* Faz o círculo. */
+            display: flex; /* Habilita Flexbox para centralizar o ícone DENTRO. */
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0; /* Impede que o círculo encolha. */
+        }
+        /* Define a cor vermelha para os ícones de Telefone e Email. */
+        .info-item .fa-phone-alt,
+        .info-item .fa-envelope {
+            color: var(--cor-acento-vibrante);
+        }
+        /* Estiliza o parágrafo (<p>) que contém o texto. */
+        .info-item p {
+            margin: 0; /* Remove margem padrão. */
+            padding-left: 20px; /* Espaço entre ícone e texto. */
+        }
+        /* Estiliza o título do item (<strong>). */
+        .info-item p strong {
+            display: block; /* Ocupa linha própria. */
+            color: var(--cor-texto); /* Cor escura. */
+            font-size: 1.1em; /* Tamanho da fonte. */
+            margin-bottom: 2px; /* Espaço abaixo. */
+        }
+        /* Estiliza os links (<a>) de telefone e email. */
+        .info-item p a {
+            color: var(--cor-acento-escuro); /* Cor terracota escura. */
+            font-weight: 700; /* Negrito. */
+            text-decoration: none; /* Remove sublinhado. */
+            transition: color 0.3s; /* Animação suave da cor no hover. */
+        }
+        /* Estiliza o link QUANDO o mouse está em cima (:hover). */
+        .info-item p a:hover {
+            text-decoration: underline; /* Adiciona sublinhado. */
+        }
+
+        /* Estiliza a seção PRETA de Localização. */
+        .localizacao-section {
+            background-color: var(--cor-fundo-escuro); /* Fundo preto suave. */
+            padding: 80px 0 60px 0; /* Espaçamento: 80px topo, 60px baixo. */
+            margin-bottom: 0; /* Garante que não haja margem abaixo. */
+            color: var(--cor-texto-claro); /* Texto padrão claro nesta seção. */
+        }
+
+        /* Estiliza o container Flexbox para as colunas de mapa e endereço. */
+        .localizacao-flex {
+            max-width: 800px; /* Largura máxima reduzida. */
+            margin: 0 auto; /* Centraliza. */
+            padding: 0 20px; /* Espaçamento lateral. */
+            display: flex; /* Habilita Flexbox. */
+            flex-wrap: wrap; /* Permite quebrar em telas menores. */
+            gap: 40px; /* Espaço entre as colunas. */
+            align-items: center; /* Alinha verticalmente. */
+        }
+
+        /* Estiliza a coluna do mapa. */
+        .mapa-coluna {
+            flex: 1; /* Ocupa metade do espaço. */
+            min-width: 300px; /* Largura mínima. */
+            /* Estado inicial da animação. */
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        /* Estiliza o container responsivo do mapa. */
+        .mapa-container {
+            position: relative; /* Base para o iframe. */
+            width: 100%; /* Largura total da coluna. */
+            padding-top: 75%; /* Proporção 4:3. */
+            border-radius: 8px; /* Cantos arredondados. */
+            overflow: hidden; /* Esconde 'vazamentos' do iframe. */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1); /* Sombra. */
+        }
+        /* Estiliza o iframe do mapa. */
+        .mapa-container iframe {
+            position: absolute; /* Posiciona sobre o padding-top. */
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            border: 0; /* Remove borda. */
+        }
+
+        /* Estiliza a coluna do endereço e horário. */
+        .endereco-coluna {
+            flex: 1; /* Ocupa a outra metade. */
+            min-width: 300px; /* Largura mínima. */
+            /* Estado inicial da animação. */
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        /* Adiciona espaço extra abaixo do item de endereço. */
+        .endereco-coluna .info-item:first-child {
+            margin-bottom: 35px; /* Separa do item de horário. */
+        }
+
+        /* Ajusta o estilo dos ícones para a seção PRETA. */
+        .endereco-coluna .info-item i {
+            background-color: rgba(255,255,255,0.1); /* Fundo translúcido. */
+            color: var(--cor-acento-quente); /* Cor terracota. */
+            box-shadow: none; /* Remove sombra no fundo escuro. */
+        }
+        /* Ajusta a cor do texto padrão para a seção PRETA. */
+        .endereco-coluna .info-item {
+            color: var(--cor-texto-medio); /* Cinza médio. */
+        }
+        /* Ajusta a cor do título do item (<strong>) para a seção PRETA. */
+        .endereco-coluna .info-item p strong {
+             color: var(--cor-texto-claro); /* Branco suave. */
+        }
+        /* Ajusta o tamanho e altura de linha do texto descritivo na seção PRETA. */
+        .endereco-coluna .info-item p {
+            font-size: 0.9em; /* Ligeiramente menor. */
+            line-height: 1.5; /* Altura de linha ajustada. */
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="cabecalho">
+    <div class="container">
+        <a href="index.html" class="logo-area">
+            <img src="images/vidanca-logo.png" alt="Logo VIdança" class="logo">
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="sobre.html">Quem Somos</a></li>
+                <li><a href="projetos.html">Projetos</a></li>
+                <li><a href="noticias.html">Notícias</a></li>
+                <li><a href="galeria.html">Galeria</a></li>
+                <li><a href="contato.html" class="ativo">Contato</a></li> 
+                <li><a href="ajudar.html" class="btn-doar">DOE AGORA</a></li>
+            </ul>
+        </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <section class="contato-hero">
+            <h1>Entre em Contato</h1>
+        </section>
+
+        <div class="content-overlay-container">
+            <div class="contato-lista-wrapper">
+
+                <section class="info-bloco">
+                    <div class="info-item">
+                        <i class="fas fa-phone-alt"></i> <p>
+                            <strong>Telefone:</strong> <a href="tel:+558532627599">+55 85 3262-7599</a> </p>
+                    </div>
+                </section>
+
+                <section class="info-bloco">
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i> <p>
+                            <strong>E-mail:</strong> <a href="mailto:contato@vidanca.org.br">contato@vidanca.org.br</a> </p>
+                    </div>
+                </section>
+
+            </div> </div> <section class="localizacao-section">
+            <div class="localizacao-flex">
+
+                <div class="mapa-coluna">
+                    <div class="mapa-container">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3981.381397449557!2d-38.60085988524106!3d-3.708902997275084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7c7333602555555%3A0x66c781273b4004a5!2sAssocia%C3%A7%C3%A3o%20Vidan%C3%A7a!5e0!3m2!1spt-BR!2sbr"
+                            style="border:0;"
+                            allowfullscreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </div>
+
+                <div class="endereco-coluna">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i> <p>
+                            <strong>Endereço:</strong> Av. L, 400 - Vila Velha, Fortaleza - CE, 60347-800 </p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i> <p>
+                            <strong>Horário de Funcionamento:</strong> Segunda a Sábado<br> 08:00 às 20:00<br></p>
+                    </div>
+                </div>
+
+            </div> 
+        </section> 
+    </main> 
+
+    <footer class="rodape">
+    <div class="container">
+        <div class="social">
+            <a href="https://www.instagram.com/ciavidanca/" target="_blank" aria-label="Instagram">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://www.facebook.com/ciavidanca" target="_blank" aria-label="Facebook">
+                <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <a href="https://www.youtube.com/c/Associa%C3%A7%C3%A3oVidan%C3%A7a" target="_blank" aria-label="YouTube">
+                <i class="fa-brands fa-youtube"></i>
+            </a>
+            <a href="https://mapacultural.secult.ce.gov.br/agente/8705/" target="_blank" aria-label="Mapa Cultural">
+                <i class="fa-solid fa-map-location-dot"></i>
+            </a>
+        </div>
+        <p>&copy; 2025 Vidança. Todos os direitos reservados.</p>
+    </div>
+    </footer>
+
+    <script>
+        // Espera o HTML carregar antes de executar.
+        document.addEventListener("DOMContentLoaded", function() {
+
+            // 1. Seleciona TODOS os elementos que devem ser animados pela classe.
+            const blocosParaAnimar = document.querySelectorAll(
+                '.contato-hero, .info-bloco, .mapa-coluna, .endereco-coluna'
+            );
+
+            // 2. Define as opções para o observador.
+            const opcoes = {
+                root: null, // Observa em relação à janela.
+                rootMargin: '0px', // Nenhuma margem extra.
+                threshold: 0.1 // Dispara quando 10% do elemento está visível.
+            };
+
+            // 3. Define a função a ser executada quando a visibilidade muda.
+            const callback = (entries, observer) => {
+                // Para cada elemento sendo observado...
+                entries.forEach(entry => {
+                    // Se o elemento está visível...
+                    if (entry.isIntersecting) {
+                        // Adiciona a classe 'is-visible' (o CSS faz ele aparecer).
+                        entry.target.classList.add('is-visible');
+                    } else {
+                        // Se o elemento NÃO está visível...
+                        // Remove a classe 'is-visible' (o CSS faz ele desaparecer).
+                        entry.target.classList.remove('is-visible');
+                    }
+                });
+            };
+
+            // 4. Cria o objeto observador.
+            const observador = new IntersectionObserver(callback, opcoes);
+
+            // 5. Instrui o observador a "assistir" cada elemento selecionado.
+            blocosParaAnimar.forEach(bloco => {
+                if (bloco) { // Garante que o elemento existe
+                    observador.observe(bloco);
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
