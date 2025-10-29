@@ -96,23 +96,66 @@ body {
     border-color: var(--cor-principal);
 }
 
+/* --- ESTILOS DOS BOTÕES DO MENU (CONSOLIDADOS) --- */
+
+/* Estilo para o botão "DOE AGORA" */
+.cabecalho nav a.btn-doar,
+.cabecalho nav a.btn-inscricao {
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    border: 2px solid transparent;
+    text-decoration: none;
+}
+.cabecalho nav a.btn-doar {
+    background-color: var(--cor-principal);
+    color: var(--cor-fundo);
+}
+.cabecalho nav a.btn-doar:hover {
+    background-color: var(--cor-destaque); /* Vinho mais escuro */
+    color: var(--cor-principal);
+    border-color: var(--cor-principal);
+}
+.cabecalho nav a.btn-doar.ativo {
+    background-color: var(--cor-destaque);
+    color: white;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.cabecalho nav a.btn-inscricao {
+    background-color: var(--cor-destaque);
+    color: var(--cor-principal);
+    border-color: var(--cor-principal);
+}
+.cabecalho nav a.btn-inscricao:hover {
+    background-color: #6e0000;
+    color: white;
+    border-color: transparent;
+}
+.cabecalho nav a.btn-inscricao.ativo {
+    background-color: #6e0000;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+    border-color: transparent;
+}
+
+
 /* ==================================================== */
 /* ============ ESTILOS DO CARROSSEL ============ */
 /* ==================================================== */
 
 .carousel-container {
     width: 100%;
-    position: relative; /* Essencial para posicionar os botões e as bolinhas */
-    overflow: hidden; /* Esconde os slides que estão fora da tela */
-    background-color: #333; /* Cor de fundo enquanto a imagem carrega */
+    position: relative;
+    overflow: hidden;
+    background-color: #333;
     color: white;
 }
 
 .carousel-slide {
-    display: flex; /* Alinha os slides lado a lado */
-    height: 70vh; /* Altura de 70% da tela. Ajuste se precisar */
+    display: flex;
+    height: 70vh;
     min-height: 450px;
-    transition: transform 0.7s ease-in-out; /* Animação de transição suave */
+    transition: transform 0.7s ease-in-out;
 }
 
 .slide {
@@ -137,7 +180,6 @@ body {
     z-index: 1;
 }
 
-/* Camada escura para dar contraste ao texto */
 .slide-background::before {
     content: '';
     position: absolute;
@@ -145,7 +187,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Ajuste a opacidade (0.5) se precisar */
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .slide-content {
@@ -157,7 +199,7 @@ body {
 
 .slide-content h2 {
     font-family: var(--fonte-titulo);
-    font-size: 3.5rem; /* Tamanho do título principal */
+    font-size: 3.5rem;
     text-transform: uppercase;
     text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
     margin-bottom: 15px;
@@ -176,7 +218,7 @@ body {
     background-color: transparent;
     border: 2px solid white;
     color: white;
-    padding: 12px 25px;
+    padding: 5px 15px; /* Mantido o padding menor para este botão */
     text-decoration: none;
     text-transform: uppercase;
     border-radius: 5px;
@@ -186,25 +228,6 @@ body {
 .btn-saber-mais:hover {
     background-color: white;
     color: var(--cor-principal);
-}
-
-.cabecalho nav a.btn-doar {
-    font-family: var(--fonte-corpo);
-    font-weight: bold;
-    background-color: var(--cor-destaque);
-    border: 2px solid var(--cor-principal);
-    color: var(--cor-principal); /* Esta regra agora será aplicada corretamente */
-    padding: 12px 25px;
-    text-decoration: none;
-    text-transform: uppercase;
-    border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.cabecalho nav a.btn-doar:hover {
-    background-color: #A52A2A; /* Um vermelho um pouco mais claro para o efeito */
-    border-color: #A52A2A;
-    color: white;
 }
 
 /* Estilo dos Botões de Navegação (Setas) */
@@ -252,34 +275,6 @@ body {
 .dot.active {
     background-color: white;
 }
-
-/* Seção de Nossos Programas */
-.proximos-eventos {
-    padding: 60px 0;
-}
-
-.proximos-eventos h2 {
-    text-align: center;
-    font-family: var(--fonte-titulo);
-    font-size: 2.5em;
-    color: var(--cor-principal);
-    margin-bottom: 40px;
-}
-
-.evento-card {
-    display: block; 
-    text-decoration: none;
-    color: white;
-    min-height: 450px; 
-    border-radius: 8px;
-    overflow: hidden;
-    position: relative;
-    background-size: cover;
-    background-position: center;
-    transition: transform 0.3s ease;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
 
 /* Rodapé */
 .rodape {
@@ -339,10 +334,12 @@ body {
     gap: 30px;
 }
 
+/* Esta é a definição CORRETA e completa do .evento-card */
 .evento-card {
     display: block;
     text-decoration: none;
     color: white;
+    min-height: 450px; /* Adicionado min-height que estava no bloco antigo */
     border-radius: 8px;
     overflow: hidden;
     position: relative;
@@ -368,7 +365,7 @@ body {
     position: relative;
     z-index: 2;
     padding: 20px;
-    height: 98%;
+    height: 98%; /* Leve ajuste para evitar overflow */
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -462,33 +459,15 @@ ESTILOS DA PÁGINA "AJUDAR"
 ========================================
 */
 
-nav .btn-doar {
-    background-color: var(--cor-principal);
-    color: white;
-    padding: 8px 15px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-}
-
-nav .btn-doar:hover {
-    background-color: #6e0000; 
-    color: white;
-    border-bottom: 2px solid transparent; 
-}
-
-nav .btn-doar.ativo {
-    background-color: #6e0000;
-    color: white;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
-}
+/* --- REMOVIDO Bloco duplicado de estilos de botão .btn-doar --- */
 
 nav a.ativo {
     border-bottom: 2px solid var(--cor-principal);
 }
-nav .btn-doar.ativo {
-    border-bottom: none; 
+/* Garante que botões ativos não tenham a borda inferior */
+nav .btn-doar.ativo, nav .btn-inscricao.ativo {
+    border-bottom: none !important; 
 }
-
 
 .ajude-hero {
     position: relative;
@@ -611,16 +590,12 @@ nav .btn-doar.ativo {
     flex-grow: 1; 
 }
 
-.btn-pix img {
+.img-pix {
     max-width: 100px;
     height: auto;
     border-radius: 5px;
     transition: opacity 0.3s;
-    
-}
-
-.btn-pix:hover img {
-    opacity: 0.85;
+    padding-left: 470px;
 }
 
 /*
@@ -744,6 +719,7 @@ ESTILOS DA PÁGINA "SOBRE NÓS"
     margin-top: 30px;
 }
 
+/* --- CORRIGIDO: Removido seletor .certificacoes-lista (código morto) --- */
 .sobre-inscricoes ul {
     list-style: none;
     padding-left: 0;
@@ -767,6 +743,7 @@ ESTILOS DA PÁGINA "SOBRE NÓS"
     top: 0;
     font-size: 1.2em;
 }
+/* --- FIM DA CORREÇÃO --- */
 
 
 .fundadora-grid {
@@ -787,9 +764,8 @@ ESTILOS DA PÁGINA "SOBRE NÓS"
     margin-top: 0; 
 }
 
-
 /* ========================================
-NOVO ESTILO DE CARDS DE PROGRAMAS
+ESTILO DE CARDS DE PROGRAMAS
 ========================================
 */
 .programas-grid {
@@ -824,11 +800,51 @@ NOVO ESTILO DE CARDS DE PROGRAMAS
 }
 
 .programa-card p {
-    font-size: 1em; /* Tamanho da descrição */
+    font-size: 1em; 
     line-height: 1.6;
     color: var(--cor-texto);
     margin-bottom: 0;
-    flex-grow: 1; /* Garante que os cards na mesma linha tenham a mesma altura */
+    flex-grow: 1; 
+}
+/* --- FIM DO BLOCO DE PROGRAMAS --- */
+
+
+/* --- REMOVIDO Bloco de parcerias com imagem única (código morto) --- */
+
+
+/* ========================================
+NOVOS ESTILOS DE CARDS DE PARCERIAS (SEÇÃO "Certificações e Parcerias")
+(Este bloco estava faltando no seu arquivo)
+========================================
+*/
+.parcerias-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsivo */
+    gap: 20px; /* Espaço entre os cards */
+    margin-top: 25px;
+    margin-bottom: 40px; /* Espaço abaixo do grid */
+}
+
+.parceria-card {
+    background-color: #ffffff; /* Fundo branco */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08); /* Sombra mais sutil */
+    padding: 20px;
+    display: flex;
+    align-items: center; /* Centraliza o texto verticalmente */
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.parceria-card:hover {
+    transform: translateY(-3px); /* Efeito sutil ao passar o mouse */
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.parceria-card p {
+    font-size: 1.05em; /* Tamanho do texto */
+    line-height: 1.5;
+    color: var(--cor-texto); /* Cor de texto padrão (cinza escuro) */
+    margin: 0; /* Remove margens padrão do parágrafo dentro do card */
 }
 /* --- FIM DO NOVO BLOCO --- */
 
@@ -866,6 +882,97 @@ NOVO ESTILO DE CARDS DE PROGRAMAS
     content: '\f0e0'; 
 }
 
+
+/*
+========================================
+ESTILOS DA PÁGINA "FAÇA PARTE" (Inscrições)
+========================================
+*/
+
+/* --- REMOVIDO Bloco duplicado de estilos de botão .btn-inscricao --- */
+
+/* Grid dos Documentos */
+.documentos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.documento-card {
+    background-color: #ffffff; 
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    font-size: 1.05em;
+    color: var(--cor-texto); 
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 15px; 
+    transition: transform 0.3s, box-shadow 0.3s;
+    line-height: 1.4;
+}
+
+.documento-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.documento-card i {
+    font-size: 1.5em;
+    color: var(--cor-principal); 
+    width: 30px; 
+    text-align: center;
+}
+
+/* Estilo da segunda coluna (Contato) */
+.inscricoes-contato {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%; 
+    box-sizing: border-box; 
+}
+
+.inscricoes-contato h4 {
+    margin-top: 0;
+    font-size: 1.8em !important; 
+}
+
+.inscricoes-contato p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.btn-contato {
+    background-color: var(--cor-principal);
+    color: white;
+    padding: 12px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    font-size: 1.1em;
+    text-transform: uppercase;
+    transition: background-color 0.3s, transform 0.3s;
+    display: inline-block;
+}
+
+.btn-contato:hover {
+    background-color: #6e0000; 
+    transform: scale(1.05);
+}
+
+.sobre-inscricoes .contato-lista {
+    margin-top: 25px;
+}
 
 /* --- Responsividade (para telas menores) --- */
 
@@ -928,11 +1035,13 @@ NOVO ESTILO DE CARDS DE PROGRAMAS
         font-size: 1.2em;
     }
 
-    .cabecalho nav a.btn-doar {
-        padding: 8px 12px;
-        font-size: 0.9em;
+    /* --- CORRIGIDO: Regra combinada para ambos os botões --- */
+    .cabecalho nav a.btn-doar,
+    .cabecalho nav a.btn-inscricao {
+        padding: 8px 12px; 
+        font-size: 0.9em; 
         width: 100%; 
-        text-align: center;
+        text-align: center; 
         margin-top: 10px; 
     }
 
