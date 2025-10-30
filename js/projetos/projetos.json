@@ -1,0 +1,26 @@
+[
+  {
+    "nome": "Escola de Dança Vidança",
+    "tipo_acesso": "Público",
+    "publico_alvo": "Crianças e Adolescentes",
+    "descricao_breve": "Aulas gratuitas de dança clássica, ballet, dança funcional e contemporânea.",
+    "descricao_detalhada": "A Escola Vidança é o coração de nossos programas, oferecendo um ambiente seguro e criativo para crianças e adolescentes explorarem diversas modalidades de dança. Além da técnica, focamos na arte-educação e cidadania, usando o movimento como ferramenta de transformação social e expressão pessoal.",
+    "imagem": "images/home/contacao.jpg"
+  },
+  {
+    "nome": "Tambatuque da Vidança",
+    "tipo_acesso": "Público",
+    "publico_alvo": "Crianças e Adolescentes",
+    "descricao_breve": "Grupo de percussão formado por crianças da Vila Velha, como expansão expressiva.",
+    "descricao_detalhada": "O Tambatuque é mais que um grupo de percussão; é um projeto de expansão expressiva que já possui sua própria história. Ele vivencia processos de autonomização e inserção nas comunidades, levando a música cênica dos nossos espetáculos para novos palcos e contextos.",
+    "imagem": "images/home/tambatuque.png"
+  },
+  {
+    "nome": "Núcleo de Formação e Profissionalização",
+    "tipo_acesso": "Público",
+    "publico_alvo": "Adultos",
+    "descricao_breve": "Formação profissional em Corte e Costura, artesanato e artes viso-plásticas.",
+    "descricao_detalhada": "Este núcleo assume a direção de todos os trabalhos de formação profissional da Associação. O desdobramento fundamental é a profissionalização em Dança e, principalmente, em Corte e Costura, criando uma ambiência educativa de construção da arte e valorizando as matrizes culturais do local.",
+    "imagem": "images/home/costura.png"
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "imagem": "images/galeria/apresentacao.png",
+    "titulo": "Apresentação de Ballet"
+  },
+  {
+    "imagem": "images/galeria/violao.png",
+    "titulo": "Aulas de Violão"
+  },
+  {
+    "imagem": "images/galeria/costura.png",
+    "titulo": "Oficina de Artesanato"
+  },
+  {
+    "imagem": "images/galeria/biblioteca.png",
+    "titulo": "Atividade em Sala"
+  },
+  {
+    "imagem": "images/galeria/imagem1.png",
+    "titulo": "Aulas de Ballet"
+  },
+  {
+    "imagem": "images/galeria/luta.png",
+    "titulo": "Aulas de Karatê"
+  }
+]

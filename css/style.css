@@ -591,11 +591,15 @@ nav .btn-doar.ativo, nav .btn-inscricao.ativo {
 }
 
 .img-pix {
-    max-width: 100px;
-    height: auto;
-    border-radius: 5px;
-    transition: opacity 0.3s;
-    padding-left: 470px;
+    max-width: 100px; /* Mantém o tamanho máximo */
+    height: auto;     /* Mantém a proporção */
+    border-radius: 5px; /* Mantém as bordas arredondadas */
+    transition: opacity 0.3s; /* Mantém a transição */
+    
+    /* === CORREÇÃO PRINCIPAL === */
+    display: block;      /* Necessário para que 'margin: auto' funcione */
+    margin: 0 auto 20px auto; /* Centraliza horizontalmente e adiciona margem inferior */
+    /* A linha 'padding-left: 470px;' foi REMOVIDA */
 }
 
 /*
@@ -882,7 +886,6 @@ NOVOS ESTILOS DE CARDS DE PARCERIAS (SEÇÃO "Certificações e Parcerias")
     content: '\f0e0'; 
 }
 
-
 /*
 ========================================
 ESTILOS DA PÁGINA "FAÇA PARTE" (Inscrições)
@@ -954,6 +957,7 @@ ESTILOS DA PÁGINA "FAÇA PARTE" (Inscrições)
 
 .btn-contato {
     background-color: var(--cor-principal);
+    font-family: var(--fonte-subtitulo);
     color: white;
     padding: 12px 30px;
     text-decoration: none;
@@ -974,15 +978,588 @@ ESTILOS DA PÁGINA "FAÇA PARTE" (Inscrições)
     margin-top: 25px;
 }
 
+
+/* ==================================================== */
+/* ============ ESTILOS DA PÁGINA DE NOTÍCIAS ============ */
+/* ==================================================== */
+
+/*
+ * 1. O Layout da Lista
+*/
+.noticia-lista {
+    display: block; /* Remove o display: grid */
+    max-width: 900px; /* Limita a largura da lista de notícias */
+    margin: 0 auto;   /* Centraliza a lista */
+}
+
+/*
+ * 2. O Card de Notícia
+ * Este é o novo card horizontal.
+*/
+.noticia-card {
+    display: flex;
+    background-color: var(--cor-destaque); /* Usa cor do site */
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 30px; /* Espaço entre os cards */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    border-left: 5px solid var(--cor-principal); /* Detalhe de cor */
+}
+
+.noticia-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.noticia-card-imagem {
+    width: 35%; /* Largura da imagem */
+    flex-shrink: 0; /* Impede que a imagem encolha */
+    background-size: cover;
+    background-position: center;
+    min-height: 200px;
+}
+
+.noticia-card-texto {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.noticia-card-texto .titulo {
+    font-family: var(--fonte-subtitulo);
+    font-size: 1.8em;
+    color: var(--cor-principal);
+    line-height: 1.2;
+    margin-bottom: 10px;
+}
+
+.noticia-card-texto .data {
+    font-family: var(--fonte-corpo);
+    font-size: 0.9em;
+    font-weight: bold;
+    color: var(--cor-principal);
+    margin-bottom: 15px;
+}
+
+.noticia-card-texto .descricao {
+    font-family: var(--fonte-corpo);
+    font-size: 1em;
+    line-height: 1.6;
+    color: var(--cor-texto);
+}
+
+/* --- 1. ESTILO GENÉRICO DO MODAL (FUNDO E FECHAR) --- */
+
+.modal-overlay {
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85); /* Fundo escuro transparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    box-sizing: border-box; 
+}
+
+.modal-overlay.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-content {
+    position: relative;
+    /* SEM background-color para manter a transparência da imagem */
+    color: #FFFFFF; /* COR PADRÃO DO TEXTO: BRANCO */
+    border-radius: 8px;
+    overflow: hidden; 
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    display: flex;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.visible .modal-content {
+    transform: scale(1);
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2.5rem;
+    color: #FFFFFF; /* <-- CORRIGIDO: 'X' em Branco */
+    cursor: pointer;
+    z-index: 1001;
+    line-height: 1;
+    text-shadow: 0 0 5px rgba(0,0,0,0.5); /* Sombra para o 'X' */
+}
+
+/*
+ * 3. O Modal de Notícia (Cópia do Modal de Projetos)
+*/
+#noticia-modal-overlay {
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#noticia-modal-overlay.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+#noticia-modal-content {
+    position: relative;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    border-radius: 8px;
+    overflow: hidden;
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    display: flex;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+#noticia-modal-overlay.visible #noticia-modal-content {
+    transform: scale(1);
+}
+
+#noticia-modal-image {
+    width: 45%;
+    object-fit: cover;
+}
+
+.noticia-modal-texto {
+    width: 55%;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.noticia-modal-texto h2 {
+    font-family: var(--fonte-titulo);
+    font-size: 2.5em;
+    color: var(--cor-destaque);
+    margin-bottom: 10px; /* Menos espaço para a data */
+}
+
+/* [NOVO] Estilo para a data dentro do modal */
+.noticia-modal-texto #noticia-modal-data {
+    font-family: var(--fonte-corpo);
+    font-size: 1em;
+    font-weight: bold;
+    color: var(--cor-destaque);
+    margin-bottom: 20px;
+}
+
+.noticia-modal-texto p {
+    font-family: var(--fonte-subtitulo);
+    font-size: 1.1em;
+    line-height: 1.7;
+}
+
+#noticia-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2.5rem;
+    color: #555;
+    cursor: pointer;
+    z-index: 1001;
+    line-height: 1;
+}
+
+#projeto-modal-image { 
+    width: 45%;
+    object-fit: cover;
+}
+
+.projeto-modal-texto { 
+    width: 55%;
+    padding: 30px;
+    overflow-y: auto;
+    /* Fundo escuro no texto para garantir legibilidade */
+    background-color: rgba(0, 0, 0, 0.6); 
+}
+
+.projeto-modal-texto h2{ 
+    font-family: var(--fonte-titulo);
+    font-size: 2.5em;
+    color: var(--cor-principal); /* Título em vinho (como na imagem) */
+    margin-bottom: 20px;
+}
+
+.projeto-modal-texto p { 
+    font-family: var(--fonte-corpo);
+    font-size: 1.1em;
+    line-height: 1.7;
+    color: #FFFFFF; /* <-- CORRIGIDO: Descrição em Branco */
+}
+
+.secao-projetos-contato {
+    position: relative; 
+    padding: 100px 20px; 
+    text-align: center;
+    color: white;
+    background-image: url('../images/home/biblioteca.png'); 
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; 
+}
+
+.secao-projetos-contato::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.7); 
+}
+
+.projetos-contato {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.projetos-contato h2 {
+    font-family: var(--fonte-subtitulo);
+    font-size: 3rem;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 15px;
+}
+
+.projetos-contato .endereco {
+    font-family: var(--fonte-subtitulo);
+    font-size: 1.1rem;
+    max-width: 500px; 
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+
+/* ==================================================== */
+/* ============ ESTILOS DO MODAL DE PROJETOS ============ */
+/* ==================================================== */
+#projeto-modal-overlay { 
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#projeto-modal-overlay.visible { 
+    visibility: visible;
+    opacity: 1;
+}
+
+#projeto-modal-content { 
+    position: relative;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    border-radius: 8px;
+    overflow: hidden;
+    max-width: 900px;
+    width: 100%;
+    max-height: 90vh;
+    display: flex;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+    transform: scale(0.9);
+    transition: transform 0.3s ease;
+}
+
+#projeto-modal-overlay.visible #projeto-modal-content { 
+    transform: scale(1);
+}
+
+#projeto-modal-image { 
+    width: 45%;
+    object-fit: cover;
+}
+
+.projeto-modal-texto { 
+    width: 55%;
+    padding: 30px;
+    overflow-y: auto;
+}
+
+.projeto-modal-texto h2 { 
+    font-family: var(--fonte-titulo);
+    font-size: 2.5em;
+    color: var(--cor-principal);
+    margin-bottom: 20px;
+}
+
+.projeto-modal-texto p { 
+    font-family: var(--fonte-corpo);
+    font-size: 1.1em;
+    line-height: 1.7;
+}
+
+#projeto-modal-close { 
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2.5rem;
+    color: #555;
+    cursor: pointer;
+    z-index: 1001;
+    line-height: 1;
+}
+
+/* Responsividade (nenhuma mudança de seletor necessária aqui, mas verificando) */
+@media (max-width: 768px) {
+    #projeto-modal-content { 
+        flex-direction: column;
+        max-height: 80vh;
+    }
+    #projeto-modal-image { 
+        width: 100%;
+        height: 200px;
+    }
+    .projeto-modal-texto { 
+        width: 100%;
+        padding: 20px;
+    }
+    .projeto-modal-texto h2 { 
+        font-size: 2em;
+    }
+    #projeto-modal-close { 
+         color: white;
+         background: rgba(0,0,0,0.3);
+         border-radius: 50%;
+         padding: 0 8px 4px 8px;
+         top: 10px;
+         right: 10px;
+         font-size: 2rem;
+    }
+}
+
+/*
+========================================
+ESTILOS DOS CONTAINERS DINÂMICOS (Grid)
+========================================
+*/
+
+/* * 1. Define o layout de GRID para as páginas de Projetos e Galeria
+ * Isso impede que os cards fiquem empilhados e quebrados.
+*/
+#projetos-container,
+#galeria-container {
+    /* Adiciona o espaçamento do .container para alinhar com o site */
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 20px; /* Padding de 60px em cima/baixo, 20px nas laterais */
+    box-sizing: border-box; /* Garante que o padding não quebre o layout */
+
+    /* Define o grid */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+/* * 2. Define o container da página de Notícias (como uma lista, não um grid)
+*/
+#noticias-container {
+    max-width: 900px; /* Lista de notícias é mais estreita */
+    margin: 0 auto;
+    padding: 60px 20px; 
+    box-sizing: border-box; 
+    display: block; 
+}
+
+
+/*
+========================================
+ESTILOS DO CARD DE PROJETO
+(Para corrigir a imagem "esmagada")
+========================================
+*/
+.projeto-card .evento-card-content {
+    justify-content: space-between; /* Empurra o texto para baixo */
+}
+
+.projeto-card .categoria {
+    margin-bottom: 0; /* Remove o 'margin-bottom: auto' do card de evento */
+}
+
+.projeto-card-texto {
+    padding: 15px;
+    background-color: rgba(0,0,0,0.5); /* Fundo semi-transparente */
+    border-radius: 5px;
+    text-align: left; /* Alinha o texto do projeto à esquerda */
+}
+
+.projeto-card-texto .titulo {
+    font-size: 1.5em; /* Ajusta o tamanho do título */
+    margin-bottom: 8px;
+    line-height: 1.2;
+}
+
+.projeto-card-texto .projeto-publico {
+    font-size: 1em;
+    font-weight: bold;
+    color: var(--cor-fundo);
+    margin: 0 0 8px 0;
+    padding: 0;
+}
+
+.projeto-card-texto .projeto-descricao {
+    font-size: 0.9em;
+    color: var(--cor-destaque);
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+}
+
+/*
+========================================
+ESTILOS DO LIGHTBOX DA GALERIA (FALTANDO)
+========================================
+*/
+/* O fundo escuro do pop-up */
+#lightbox-overlay {
+    visibility: hidden;
+    opacity: 0;
+    position: fixed;
+    z-index: 2000; /* Mais alto que o menu */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9); /* Mais escuro */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    box-sizing: border-box;
+}
+
+#lightbox-overlay.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* A imagem dentro do pop-up */
+#lightbox-image {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border-radius: 5px;
+}
+
+/* O botão 'X' para fechar */
+#lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 3rem;
+    color: white;
+    cursor: pointer;
+    line-height: 1;
+}
+
+/*
+========================================
+AJUSTES RESPONSIVOS (MODAIS)
+========================================
+*/
+@media (max-width: 768px) {
+    /* Responsividade do modal de Notícias */
+    .noticia-modal-content {
+        flex-direction: column;
+        max-height: 80vh;
+    }
+    .noticia-modal-content #noticia-modal-image {
+        width: 100%;
+        height: 200px;
+    }
+    .noticia-modal-content .noticia-modal-texto {
+        width: 100%;
+        padding: 20px;
+    }
+    .noticia-modal-content .noticia-modal-texto h2 {
+        font-size: 2em;
+    }
+    /* Botão de fechar do modal de notícias */
+    .noticia-modal-content #noticia-modal-close {
+         color: white;
+         background: rgba(0,0,0,0.3);
+         border-radius: 50%;
+         padding: 0 8px 4px 8px;
+         top: 10px;
+         right: 10px;
+         font-size: 2rem;
+    }
+
+    /* Responsividade do Card de Notícia (lista) */
+    .noticia-card {
+        flex-direction: column;
+    }
+    .noticia-card-imagem {
+        width: 100%;
+        height: 200px; /* Altura fixa para a imagem no modo coluna */
+    }
+    .noticia-card-texto {
+        width: auto; /* Deixa o padding cuidar do resto */
+    }
+}
+
+
 /* --- Responsividade (para telas menores) --- */
 
 @media (max-width: 800px) {
     .fundadora-grid {
-        grid-template-columns: 1fr; 
+        grid-template-columns: 1fr; /* Coluna única em telas menores */
     }
     .fundadora-img {
-        max-width: 300px; 
+        /* Mantém o limite de 300px, mas garante que não ultrapasse o container */
+        max-width: min(300px, 100%); 
         margin: 0 auto 30px auto;
+        /* Adiciona box-sizing para garantir que padding/border não aumentem o tamanho */
+        box-sizing: border-box; 
     }
     .fundadora-bio h3 {
         text-align: center;

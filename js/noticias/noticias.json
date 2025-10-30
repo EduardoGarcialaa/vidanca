@@ -1,0 +1,16 @@
+[
+  {
+    "titulo": "Espetáculo 'Raízes' Encanta o Público no Theatro José de Alencar",
+    "data": "25 de Outubro, 2025",
+    "imagem": "images/home/cultura-infancia.jpg",
+    "descricao_breve": "Nossos alunos da Escola de Dança apresentaram o espetáculo 'Raízes', uma jornada emocionante pela cultura e história cearense, lotando o teatro.",
+    "descricao_detalhada": "A apresentação foi um sucesso absoluto. Durante mais de duas horas, o público foi transportado por uma coreografia que misturou o clássico e o contemporâneo, tudo ao som de música regional ao vivo tocada pelo grupo Tambatuque. Este projeto, que envolveu meses de ensaio, não só aprimorou a técnica dos nossos dançarinos, mas também fortaleceu seu senso de identidade e pertencimento cultural."
+  },
+  {
+    "titulo": "Núcleo de Formação Profissional Abre Novas Turmas de Corte e Costura",
+    "data": "18 de Outubro, 2025",
+    "imagem": "images/home/retalhos.jpg",
+    "descricao_breve": "O Núcleo de Formação Profissional abriu 20 novas vagas para o curso gratuito de Corte e Costura, focado na geração de renda para mães da comunidade.",
+    "descricao_detalhada": "Com foco na autonomia financeira e no empreendedorismo local, o curso de Corte e Costura é um dos pilares do nosso Núcleo de Formação. As novas alunas aprenderão desde o básico do manuseio da máquina até técnicas de modelagem e acabamento. Ao final do semestre, elas participarão de um desfile de formatura e receberão um certificado profissionalizante, prontas para ingressar no mercado de trabalho."
+  }
+]
