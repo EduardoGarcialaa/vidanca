@@ -9,18 +9,31 @@
     --fonte-subtitulo: 'Playfair Display', serif;
 }
 
+/* Garante que o container tenha padding e não cause overflow */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box; /* Garante que o padding não aumente a largura */
+}
+
+/* Garante que imagens nunca "vazem" do seu container */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Trava o scroll da página quando o menu móvel está aberto */
+body.no-scroll {
+    overflow: hidden;
+}
+
 /* Estilos Globais */
 body {
     margin: 0;
     font-family: var(--fonte-corpo);
     background-color: var(--cor-fundo);
     color: var(--cor-texto);
-}
-
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 20px;
 }
 
 /* Cabeçalho */
@@ -31,6 +44,11 @@ body {
     position: sticky;
     top: 0;
     z-index: 100;
+}
+
+/* Esconde a logo que fica dentro do menu no desktop */
+.logo-no-menu {
+    display: none;
 }
 
 .cabecalho .container {
@@ -79,7 +97,7 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    gap: 25px;
+    gap: 20px;
 }
 
 .cabecalho nav a {
@@ -276,32 +294,6 @@ body {
     background-color: white;
 }
 
-/* Rodapé */
-.rodape {
-    background-color: var(--cor-destaque);
-    color: var(--cor-principal);
-    text-align: center;
-    padding: 30px 0;
-    margin-top: 60px;
-}
-
-.rodape .social {
-    margin-bottom: 15px;
-}
-
-.rodape .social a {
-    color: var(--cor-principal); 
-    text-decoration: none;
-    margin: 0 12px; 
-    font-size: 1.8em; 
-    display: inline-block; 
-    transition: transform 0.3s, opacity 0.3s;
-}
-.rodape .social a:hover {
-    opacity: 0.7; 
-    transform: scale(1.1); 
-}
-
 /* ==================================================== */
 /* ============ SEÇÃO DE NOTÍCIAS / EVENTOS ============ */
 /* ==================================================== */
@@ -328,18 +320,12 @@ body {
     margin-bottom: 40px;
 }
 
-#eventos-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-}
-
 /* Esta é a definição CORRETA e completa do .evento-card */
 .evento-card {
     display: block;
     text-decoration: none;
     color: white;
-    min-height: 450px; /* Adicionado min-height que estava no bloco antigo */
+    min-height: 450px;
     border-radius: 8px;
     overflow: hidden;
     position: relative;
@@ -388,22 +374,55 @@ body {
     text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
 }
 
+/*
+========================================
+ESTILOS DOS CONTAINERS DINÂMICOS (Grid)
+(COMBINADO)
+========================================
+*/
+
+/* COMBINADO: Propriedades de grid compartilhadas */
+#eventos-container,
+#projetos-container,
+#galeria-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+/* Estilos de layout específicos */
+#projetos-container,
+#galeria-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    box-sizing: border-box; 
+}
+
+#noticias-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 20px; 
+    box-sizing: border-box; 
+    display: block; 
+}
+
 /* ==================================================== */
-/* ============ ESTILOS DA SEÇÃO DE LOCALIZAÇÃO ============ */
+/* ============ SEÇÃO PARALLAX (LOCALIZAÇÃO / CONTATO) ============ */
 /* ==================================================== */
 
-.secao-localizacao {
+/* NOVO BLOCO GENÉRICO: Estilo base para seções com imagem de fundo parallax */
+.secao-parallax-cta {
     position: relative; 
     padding: 100px 20px; 
     text-align: center;
     color: white;
-    background-image: url('../images/home/estudio-danca.png'); 
     background-size: cover;
     background-position: center;
     background-attachment: fixed; 
 }
 
-.secao-localizacao::before {
+.secao-parallax-cta::before {
     content: '';
     position: absolute;
     top: 0;
@@ -414,7 +433,8 @@ body {
     background-color: rgba(0, 0, 0, 0.7); 
 }
 
-.localizacao-conteudo {
+/* NOVO BLOCO GENÉRICO: Conteúdo da seção parallax */
+.secao-parallax-cta-conteudo {
     position: relative;
     z-index: 2;
     display: flex;
@@ -422,7 +442,7 @@ body {
     align-items: center;
 }
 
-.localizacao-conteudo h2 {
+.secao-parallax-cta-conteudo h2 {
     font-family: var(--fonte-subtitulo);
     font-size: 3rem;
     text-transform: uppercase;
@@ -430,7 +450,7 @@ body {
     margin-bottom: 15px;
 }
 
-.localizacao-conteudo .endereco {
+.secao-parallax-cta-conteudo .endereco {
     font-family: var(--fonte-subtitulo);
     font-size: 1.1rem;
     max-width: 500px; 
@@ -438,6 +458,16 @@ body {
     line-height: 1.6;
 }
 
+/* Aplica as imagens de fundo específicas */
+.secao-localizacao {
+    background-image: url('../images/home/estudio-danca.png'); 
+}
+
+.secao-projetos-contato {
+    background-image: url('../images/home/turma-bale.png'); 
+}
+
+/* Botões específicos de cada seção (não puderam ser combinados) */
 .btn-localizacao {
     background-color: #e67e22; 
     color: white;
@@ -453,13 +483,39 @@ body {
     background-color: #d35400; 
 }
 
+
+/* Rodapé */
+.rodape {
+    background-color: var(--cor-destaque);
+    color: var(--cor-principal);
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 60px;
+}
+
+.rodape .social {
+    margin-bottom: 15px;
+}
+
+.rodape .social a {
+    color: var(--cor-principal); 
+    text-decoration: none;
+    margin: 0 12px; 
+    font-size: 1.8em; 
+    display: inline-block; 
+    transition: transform 0.3s, opacity 0.3s;
+}
+.rodape .social a:hover {
+    opacity: 0.7; 
+    transform: scale(1.1); 
+}
+
+
 /*
 ========================================
 ESTILOS DA PÁGINA "AJUDAR"
 ========================================
 */
-
-/* --- REMOVIDO Bloco duplicado de estilos de botão .btn-doar --- */
 
 nav a.ativo {
     border-bottom: 2px solid var(--cor-principal);
@@ -591,15 +647,12 @@ nav .btn-doar.ativo, nav .btn-inscricao.ativo {
 }
 
 .img-pix {
-    max-width: 100px; /* Mantém o tamanho máximo */
-    height: auto;     /* Mantém a proporção */
-    border-radius: 5px; /* Mantém as bordas arredondadas */
-    transition: opacity 0.3s; /* Mantém a transição */
-    
-    /* === CORREÇÃO PRINCIPAL === */
-    display: block;      /* Necessário para que 'margin: auto' funcione */
-    margin: 0 auto 20px auto; /* Centraliza horizontalmente e adiciona margem inferior */
-    /* A linha 'padding-left: 470px;' foi REMOVIDA */
+    max-width: 100px;
+    height: auto;
+    border-radius: 5px;
+    transition: opacity 0.3s;
+    display: block;
+    margin: 0 auto 20px auto;
 }
 
 /*
@@ -723,7 +776,6 @@ ESTILOS DA PÁGINA "SOBRE NÓS"
     margin-top: 30px;
 }
 
-/* --- CORRIGIDO: Removido seletor .certificacoes-lista (código morto) --- */
 .sobre-inscricoes ul {
     list-style: none;
     padding-left: 0;
@@ -747,7 +799,6 @@ ESTILOS DA PÁGINA "SOBRE NÓS"
     top: 0;
     font-size: 1.2em;
 }
-/* --- FIM DA CORREÇÃO --- */
 
 
 .fundadora-grid {
@@ -813,12 +864,8 @@ ESTILO DE CARDS DE PROGRAMAS
 /* --- FIM DO BLOCO DE PROGRAMAS --- */
 
 
-/* --- REMOVIDO Bloco de parcerias com imagem única (código morto) --- */
-
-
 /* ========================================
 NOVOS ESTILOS DE CARDS DE PARCERIAS (SEÇÃO "Certificações e Parcerias")
-(Este bloco estava faltando no seu arquivo)
 ========================================
 */
 .parcerias-grid {
@@ -891,8 +938,6 @@ NOVOS ESTILOS DE CARDS DE PARCERIAS (SEÇÃO "Certificações e Parcerias")
 ESTILOS DA PÁGINA "FAÇA PARTE" (Inscrições)
 ========================================
 */
-
-/* --- REMOVIDO Bloco duplicado de estilos de botão .btn-inscricao --- */
 
 /* Grid dos Documentos */
 .documentos-grid {
@@ -983,19 +1028,12 @@ ESTILOS DA PÁGINA "FAÇA PARTE" (Inscrições)
 /* ============ ESTILOS DA PÁGINA DE NOTÍCIAS ============ */
 /* ==================================================== */
 
-/*
- * 1. O Layout da Lista
-*/
 .noticia-lista {
     display: block; /* Remove o display: grid */
     max-width: 900px; /* Limita a largura da lista de notícias */
     margin: 0 auto;   /* Centraliza a lista */
 }
 
-/*
- * 2. O Card de Notícia
- * Este é o novo card horizontal.
-*/
 .noticia-card {
     display: flex;
     background-color: var(--cor-destaque); /* Usa cor do site */
@@ -1050,8 +1088,12 @@ ESTILOS DA PÁGINA "FAÇA PARTE" (Inscrições)
     color: var(--cor-texto);
 }
 
-/* --- 1. ESTILO GENÉRICO DO MODAL (FUNDO E FECHAR) --- */
+/* ==================================================== */
+/* ============ ESTILOS DE MODAIS (COMBINADO) ============ */
+/* ==================================================== */
 
+/* --- 1. ESTILO GENÉRICO DO MODAL (FUNDO E FECHAR) --- */
+/* Este é o modal genérico (ex: galeria) */
 .modal-overlay {
     visibility: hidden;
     opacity: 0;
@@ -1070,14 +1112,8 @@ ESTILOS DA PÁGINA "FAÇA PARTE" (Inscrições)
     box-sizing: border-box; 
 }
 
-.modal-overlay.visible {
-    visibility: visible;
-    opacity: 1;
-}
-
 .modal-content {
     position: relative;
-    /* SEM background-color para manter a transparência da imagem */
     color: #FFFFFF; /* COR PADRÃO DO TEXTO: BRANCO */
     border-radius: 8px;
     overflow: hidden; 
@@ -1090,26 +1126,23 @@ ESTILOS DA PÁGINA "FAÇA PARTE" (Inscrições)
     transition: transform 0.3s ease;
 }
 
-.modal-overlay.visible .modal-content {
-    transform: scale(1);
-}
-
 .modal-close {
     position: absolute;
     top: 15px;
     right: 20px;
     font-size: 2.5rem;
-    color: #FFFFFF; /* <-- CORRIGIDO: 'X' em Branco */
+    color: #FFFFFF; 
     cursor: pointer;
     z-index: 1001;
     line-height: 1;
-    text-shadow: 0 0 5px rgba(0,0,0,0.5); /* Sombra para o 'X' */
+    text-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
 
-/*
- * 3. O Modal de Notícia (Cópia do Modal de Projetos)
-*/
-#noticia-modal-overlay {
+/* --- 2. ESTILOS COMBINADOS (NOTÍCIAS E PROJETOS) --- */
+
+/* COMBINADO: Overlay de fundo para modais de Notícia e Projeto */
+#noticia-modal-overlay,
+#projeto-modal-overlay {
     visibility: hidden;
     opacity: 0;
     position: fixed;
@@ -1123,15 +1156,21 @@ ESTILOS DA PÁGINA "FAÇA PARTE" (Inscrições)
     justify-content: center;
     align-items: center;
     padding: 20px;
+    box-sizing: border-box; /* Adicionado para consistência */
     transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
-#noticia-modal-overlay.visible {
+/* COMBINADO: Classe 'visible' para todos os modais */
+.modal-overlay.visible,
+#noticia-modal-overlay.visible,
+#projeto-modal-overlay.visible {
     visibility: visible;
     opacity: 1;
 }
 
-#noticia-modal-content {
+/* COMBINADO: Conteúdo principal dos modais de Notícia e Projeto */
+#noticia-modal-content,
+#projeto-modal-content {
     position: relative;
     background-color: var(--cor-fundo);
     color: var(--cor-texto);
@@ -1146,15 +1185,23 @@ ESTILOS DA PÁGINA "FAÇA PARTE" (Inscrições)
     transition: transform 0.3s ease;
 }
 
-#noticia-modal-overlay.visible #noticia-modal-content {
+/* COMBINADO: Animação 'visible' para todos os modais */
+.modal-overlay.visible .modal-content,
+#noticia-modal-overlay.visible #noticia-modal-content,
+#projeto-modal-overlay.visible #projeto-modal-content {
     transform: scale(1);
 }
 
-#noticia-modal-image {
+/* COMBINADO: Imagem dos modais de Notícia e Projeto */
+#noticia-modal-image,
+#projeto-modal-image {
     width: 45%;
     object-fit: cover;
 }
 
+/* --- 3. ESTILOS ESPECÍFICOS DE CADA MODAL --- */
+
+/* Texto do Modal de Notícia */
 .noticia-modal-texto {
     width: 55%;
     padding: 30px;
@@ -1164,21 +1211,20 @@ ESTILOS DA PÁGINA "FAÇA PARTE" (Inscrições)
 .noticia-modal-texto h2 {
     font-family: var(--fonte-titulo);
     font-size: 2.5em;
-    color: var(--cor-destaque);
-    margin-bottom: 10px; /* Menos espaço para a data */
+    color: var(--cor-destaque); /* CORRIGIDO: Cor do tema */
+    margin-bottom: 10px;
 }
 
-/* [NOVO] Estilo para a data dentro do modal */
 .noticia-modal-texto #noticia-modal-data {
     font-family: var(--fonte-corpo);
     font-size: 1em;
     font-weight: bold;
-    color: var(--cor-destaque);
+    color: var(--cor-destaque); /* CORRIGIDO: Cor do tema */
     margin-bottom: 20px;
 }
 
 .noticia-modal-texto p {
-    font-family: var(--fonte-subtitulo);
+    font-family: var(--fonte-subtitulo); /* CORRIGIDO: Fonte do tema */
     font-size: 1.1em;
     line-height: 1.7;
 }
@@ -1194,133 +1240,12 @@ ESTILOS DA PÁGINA "FAÇA PARTE" (Inscrições)
     line-height: 1;
 }
 
-#projeto-modal-image { 
-    width: 45%;
-    object-fit: cover;
-}
-
+/* Texto do Modal de Projeto */
 .projeto-modal-texto { 
     width: 55%;
     padding: 30px;
     overflow-y: auto;
-    /* Fundo escuro no texto para garantir legibilidade */
     background-color: rgba(0, 0, 0, 0.6); 
-}
-
-.projeto-modal-texto h2{ 
-    font-family: var(--fonte-titulo);
-    font-size: 2.5em;
-    color: var(--cor-principal); /* Título em vinho (como na imagem) */
-    margin-bottom: 20px;
-}
-
-.projeto-modal-texto p { 
-    font-family: var(--fonte-corpo);
-    font-size: 1.1em;
-    line-height: 1.7;
-    color: #FFFFFF; /* <-- CORRIGIDO: Descrição em Branco */
-}
-
-.secao-projetos-contato {
-    position: relative; 
-    padding: 100px 20px; 
-    text-align: center;
-    color: white;
-    background-image: url('../images/home/biblioteca.png'); 
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed; 
-}
-
-.secao-projetos-contato::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-    background-color: rgba(0, 0, 0, 0.7); 
-}
-
-.projetos-contato {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.projetos-contato h2 {
-    font-family: var(--fonte-subtitulo);
-    font-size: 3rem;
-    text-transform: uppercase;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-    margin-bottom: 15px;
-}
-
-.projetos-contato .endereco {
-    font-family: var(--fonte-subtitulo);
-    font-size: 1.1rem;
-    max-width: 500px; 
-    margin-bottom: 30px;
-    line-height: 1.6;
-}
-
-
-/* ==================================================== */
-/* ============ ESTILOS DO MODAL DE PROJETOS ============ */
-/* ==================================================== */
-#projeto-modal-overlay { 
-    visibility: hidden;
-    opacity: 0;
-    position: fixed;
-    z-index: 1000;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.85);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-}
-
-#projeto-modal-overlay.visible { 
-    visibility: visible;
-    opacity: 1;
-}
-
-#projeto-modal-content { 
-    position: relative;
-    background-color: var(--cor-fundo);
-    color: var(--cor-texto);
-    border-radius: 8px;
-    overflow: hidden;
-    max-width: 900px;
-    width: 100%;
-    max-height: 90vh;
-    display: flex;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.4);
-    transform: scale(0.9);
-    transition: transform 0.3s ease;
-}
-
-#projeto-modal-overlay.visible #projeto-modal-content { 
-    transform: scale(1);
-}
-
-#projeto-modal-image { 
-    width: 45%;
-    object-fit: cover;
-}
-
-.projeto-modal-texto { 
-    width: 55%;
-    padding: 30px;
-    overflow-y: auto;
 }
 
 .projeto-modal-texto h2 { 
@@ -1334,6 +1259,7 @@ ESTILOS DA PÁGINA "FAÇA PARTE" (Inscrições)
     font-family: var(--fonte-corpo);
     font-size: 1.1em;
     line-height: 1.7;
+    color: #FFFFFF;
 }
 
 #projeto-modal-close { 
@@ -1347,91 +1273,29 @@ ESTILOS DA PÁGINA "FAÇA PARTE" (Inscrições)
     line-height: 1;
 }
 
-/* Responsividade (nenhuma mudança de seletor necessária aqui, mas verificando) */
-@media (max-width: 768px) {
-    #projeto-modal-content { 
-        flex-direction: column;
-        max-height: 80vh;
-    }
-    #projeto-modal-image { 
-        width: 100%;
-        height: 200px;
-    }
-    .projeto-modal-texto { 
-        width: 100%;
-        padding: 20px;
-    }
-    .projeto-modal-texto h2 { 
-        font-size: 2em;
-    }
-    #projeto-modal-close { 
-         color: white;
-         background: rgba(0,0,0,0.3);
-         border-radius: 50%;
-         padding: 0 8px 4px 8px;
-         top: 10px;
-         right: 10px;
-         font-size: 2rem;
-    }
-}
-
-/*
-========================================
-ESTILOS DOS CONTAINERS DINÂMICOS (Grid)
-========================================
-*/
-
-/* * 1. Define o layout de GRID para as páginas de Projetos e Galeria
- * Isso impede que os cards fiquem empilhados e quebrados.
-*/
-#projetos-container,
-#galeria-container {
-    /* Adiciona o espaçamento do .container para alinhar com o site */
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 60px 20px; /* Padding de 60px em cima/baixo, 20px nas laterais */
-    box-sizing: border-box; /* Garante que o padding não quebre o layout */
-
-    /* Define o grid */
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-}
-
-/* * 2. Define o container da página de Notícias (como uma lista, não um grid)
-*/
-#noticias-container {
-    max-width: 900px; /* Lista de notícias é mais estreita */
-    margin: 0 auto;
-    padding: 60px 20px; 
-    box-sizing: border-box; 
-    display: block; 
-}
-
 
 /*
 ========================================
 ESTILOS DO CARD DE PROJETO
-(Para corrigir a imagem "esmagada")
 ========================================
 */
 .projeto-card .evento-card-content {
-    justify-content: space-between; /* Empurra o texto para baixo */
+    justify-content: space-between;
 }
 
 .projeto-card .categoria {
-    margin-bottom: 0; /* Remove o 'margin-bottom: auto' do card de evento */
+    margin-bottom: 0;
 }
 
 .projeto-card-texto {
     padding: 15px;
-    background-color: rgba(0,0,0,0.5); /* Fundo semi-transparente */
+    background-color: rgba(0,0,0,0.5);
     border-radius: 5px;
-    text-align: left; /* Alinha o texto do projeto à esquerda */
+    text-align: left;
 }
 
 .projeto-card-texto .titulo {
-    font-size: 1.5em; /* Ajusta o tamanho do título */
+    font-size: 1.5em;
     margin-bottom: 8px;
     line-height: 1.2;
 }
@@ -1454,20 +1318,19 @@ ESTILOS DO CARD DE PROJETO
 
 /*
 ========================================
-ESTILOS DO LIGHTBOX DA GALERIA (FALTANDO)
+ESTILOS DO LIGHTBOX DA GALERIA
 ========================================
 */
-/* O fundo escuro do pop-up */
 #lightbox-overlay {
     visibility: hidden;
     opacity: 0;
     position: fixed;
-    z-index: 2000; /* Mais alto que o menu */
+    z-index: 2000;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.9); /* Mais escuro */
+    background-color: rgba(0, 0, 0, 0.9);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1481,7 +1344,6 @@ ESTILOS DO LIGHTBOX DA GALERIA (FALTANDO)
     opacity: 1;
 }
 
-/* A imagem dentro do pop-up */
 #lightbox-image {
     max-width: 90%;
     max-height: 90%;
@@ -1490,7 +1352,6 @@ ESTILOS DO LIGHTBOX DA GALERIA (FALTANDO)
     border-radius: 5px;
 }
 
-/* O botão 'X' para fechar */
 #lightbox-close {
     position: absolute;
     top: 20px;
@@ -1501,37 +1362,53 @@ ESTILOS DO LIGHTBOX DA GALERIA (FALTANDO)
     line-height: 1;
 }
 
+/* ==================================================== */
+/* ============ ESTILOS RESPONSIVOS ============ */
+/* ==================================================== */
+
 /*
 ========================================
-AJUSTES RESPONSIVOS (MODAIS)
+AJUSTES RESPONSIVOS (MODAIS - COMBINADO)
 ========================================
 */
 @media (max-width: 768px) {
-    /* Responsividade do modal de Notícias */
-    .noticia-modal-content {
+    /* COMBINADO: Responsividade do modal de Notícias e Projetos */
+    #noticia-modal-content,
+    #projeto-modal-content {
         flex-direction: column;
         max-height: 80vh;
     }
-    .noticia-modal-content #noticia-modal-image {
+
+    /* COMBINADO: Imagem dos modais */
+    #noticia-modal-image,
+    #projeto-modal-image {
         width: 100%;
         height: 200px;
     }
-    .noticia-modal-content .noticia-modal-texto {
+
+    /* COMBINADO: Texto dos modais */
+    .noticia-modal-texto,
+    .projeto-modal-texto {
         width: 100%;
         padding: 20px;
+        box-sizing: border-box; /* Garante padding correto */
     }
-    .noticia-modal-content .noticia-modal-texto h2 {
+
+    .noticia-modal-texto h2,
+    .projeto-modal-texto h2 {
         font-size: 2em;
     }
-    /* Botão de fechar do modal de notícias */
-    .noticia-modal-content #noticia-modal-close {
-         color: white;
-         background: rgba(0,0,0,0.3);
-         border-radius: 50%;
-         padding: 0 8px 4px 8px;
-         top: 10px;
-         right: 10px;
-         font-size: 2rem;
+
+    /* COMBINADO: Botão de fechar dos modais */
+    #noticia-modal-close,
+    #projeto-modal-close {
+        color: white;
+        background: rgba(0,0,0,0.3);
+        border-radius: 50%;
+        padding: 0 8px 4px 8px;
+        top: 10px;
+        right: 10px;
+        font-size: 2rem;
     }
 
     /* Responsividade do Card de Notícia (lista) */
@@ -1540,25 +1417,23 @@ AJUSTES RESPONSIVOS (MODAIS)
     }
     .noticia-card-imagem {
         width: 100%;
-        height: 200px; /* Altura fixa para a imagem no modo coluna */
+        height: 200px;
     }
     .noticia-card-texto {
-        width: auto; /* Deixa o padding cuidar do resto */
+        width: auto;
     }
 }
 
 
-/* --- Responsividade (para telas menores) --- */
+/* --- Outros Ajustes Responsivos --- */
 
 @media (max-width: 800px) {
     .fundadora-grid {
-        grid-template-columns: 1fr; /* Coluna única em telas menores */
+        grid-template-columns: 1fr;
     }
     .fundadora-img {
-        /* Mantém o limite de 300px, mas garante que não ultrapasse o container */
         max-width: min(300px, 100%); 
         margin: 0 auto 30px auto;
-        /* Adiciona box-sizing para garantir que padding/border não aumentem o tamanho */
         box-sizing: border-box; 
     }
     .fundadora-bio h3 {
@@ -1576,22 +1451,18 @@ AJUSTES RESPONSIVOS (MODAIS)
     }
 }
 
-/* ==================================================== */
-/* ============ ESTILOS RESPONSIVOS ============ */
-/* ==================================================== */
-
 @media (max-width: 1000px) {
-
-    .cabecalho .container {
+    /* Regras de layout de cabeçalho para tablet (quebrou o menu) */
+    /*     .cabecalho .container {
         flex-direction: column;
         gap: 15px;
     }
-
     .cabecalho nav ul {
         gap: 15px;
         flex-wrap: wrap; 
         justify-content: center;
     }
+    */
 
     .cabecalho nav a {
         font-size: 1em; 
@@ -1612,8 +1483,7 @@ AJUSTES RESPONSIVOS (MODAIS)
         font-size: 1.2em;
     }
 
-    /* --- CORRIGIDO: Regra combinada para ambos os botões --- */
-    .cabecalho nav a.btn-doar,
+    /*     .cabecalho nav a.btn-doar,
     .cabecalho nav a.btn-inscricao {
         padding: 8px 12px; 
         font-size: 0.9em; 
@@ -1621,8 +1491,147 @@ AJUSTES RESPONSIVOS (MODAIS)
         text-align: center; 
         margin-top: 10px; 
     }
-
     .cabecalho nav ul {
         width: 100%; 
+    }
+    */
+}
+
+/*
+========================================
+ESTILOS DO MENU HAMBURGER (MÓVEL)
+========================================
+*/
+
+/* 1. Estilo do Botão Hamburger (escondido no desktop) */
+#btn-hamburger {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1100;
+}
+
+#btn-hamburger .linha {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background-color: var(--cor-principal);
+    margin: 6px 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+
+/* 2. Regras de Responsividade (quando a tela for menor) */
+@media (max-width: 1400px) {
+
+    /* Mostra o botão hamburger */
+    #btn-hamburger {
+        display: block;
+    }
+
+    /* Ajusta o container do cabeçalho */
+    .cabecalho .container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    /* Esconde o menu de navegação por padrão no celular */
+    #menu-principal {
+            display: none; 
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: var(--cor-fundo); 
+            z-index: 1050; 
+            flex-direction: column;
+            
+            /* --- CORREÇÃO AQUI --- */
+            justify-content: flex-start; /* Alinha o conteúdo ao topo */
+            align-items: center;           /* Alinha os itens no centro (horizontal) */
+            /* --- FIM DA CORREÇÃO --- */
+
+            padding-top: 40px; 
+            overflow-y: auto;
+            box-sizing: border-box; /* Boa prática para incluir o padding na altura */
+      }
+
+    /* Mostra o menu quando o <header> tem a classe .menu-aberto */
+    .cabecalho.menu-aberto #menu-principal {
+        display: flex;
+    }
+
+    /* Ajusta a lista de links (<li>) */
+    #menu-principal ul {
+        flex-direction: column;
+        gap: 30px;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Ajusta os links (<a>) */
+    #menu-principal li a {
+        font-size: 1.5em;
+    }
+
+    /* Remove a regra de responsividade antiga que quebrava o layout */
+    .cabecalho nav ul {
+        flex-wrap: nowrap;
+    }
+
+    /* Ajusta os botões "Doar" e "Fazer Parte" no menu móvel */
+    .cabecalho nav a.btn-doar,
+    .cabecalho nav a.btn-inscricao {
+        padding: 12px 20px;
+        font-size: 1.2em;
+        width: 80%;
+        max-width: 300px;
+        margin-top: 10px;
+        text-align: center;
+    }
+    
+    /* Animação do 'X' no botão hamburger */
+    
+    /* Fixa o botão 'X' no canto */
+    .cabecalho.menu-aberto #btn-hamburger {
+        position: fixed; 
+        right: 20px;
+        top: 15px; 
+    }
+    
+    .cabecalho.menu-aberto #btn-hamburger .linha:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+    }
+    .cabecalho.menu-aberto #btn-hamburger .linha:nth-child(2) {
+        opacity: 0;
+    }
+    .cabecalho.menu-aberto #btn-hamburger .linha:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+    }
+
+    /* 1. Esconde a logo principal (do desktop) */
+    /*     .cabecalho .logo-area {
+        display: none;
+    }
+    */ 
+    /* ^^^ REGRA REMOVIDA PARA A LOGO APARECER ^^^ */
+
+
+    /* 2. Mostra e estiliza a logo de dentro do menu */
+    #menu-principal .logo-no-menu {
+        display: block;
+        text-align: center;
+        margin-bottom: 30px; /* Espaço abaixo da logo */
+        padding-bottom: 20px; /* Linha de separação */
+        border-bottom: 2px solid var(--cor-destaque);
+        width: 100%;
+    }
+
+    .logo-menu-movel {
+        height: 70px; /* Um pouco maior para destaque */
     }
 }

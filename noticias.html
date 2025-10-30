@@ -12,24 +12,36 @@
 
 </head>
 <body>
-
     <header class="cabecalho">
-    <div class="container">
-        <a href="index.html" class="logo-area">
-            <img src="images/vidanca-logo.png" alt="Logo Vidança" class="logo">
-        </a>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="sobre.html" class="ativo">Quem Somos</a></li>
-                <li><a href="projetos.html">Projetos</a></li>
-                <li><a href="#">Notícias</a></li>
-                <li><a href="galeria.html">Galeria</a></li>
-                <li><a href="contato.html">Contato</a></li>
-                <li><a href="ajudar.html" class="btn-doar">DOE AQUI</a></li>
-                <li><a href="inscricao.html" class="btn-inscricao">FAÇA PARTE</a></li>
-            </ul>
-        </nav>
+        <div class="container">
+            <a href="index.html" class="logo-area">
+                <img src="images/vidanca-logo.png" alt="Logo Vidança" class="logo">
+            </a>
+
+            <nav id="menu-principal">
+                <ul>
+                    <li class="logo-no-menu">
+                        <a href="index.html">
+                            <img src="images/vidanca-logo.png" alt="Página Inicial" class="logo-menu-movel">
+                        </a>
+                    </li>                    
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="sobre.html">Quem Somos</a></li>
+                    <li><a href="projetos.html">Projetos</a></li>
+                    <li><a href="noticias.html">Notícias</a></li>
+                    <li><a href="galeria.html">Galeria</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                    <li><a href="ajudar.html" class="btn-doar">DOE AQUI</a></li>
+                    <li><a href="inscricao.html" class="btn-inscricao">FAÇA PARTE</a></li>
+                </ul>
+            </nav>
+
+            <button id="btn-hamburger" aria-label="Abrir menu" aria-expanded="false">
+                <span class="linha"></span>
+                <span class="linha"></span>
+                <span class="linha"></span>
+            </button>
+
         </div>
     </header>
 
@@ -40,7 +52,7 @@
             </div>
         </section>
 
-        <div id="noticias-container">
+        <div id="noticias-container" class="container">
         </div>
 
         <div id="noticia-modal-overlay" class="modal-overlay">

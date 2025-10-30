@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
     async function carregarProgramas() {
         if (!programasContainer) return; // Só executa na página certa
         try {
-            const response = await fetch('js/sobre/programas.json'); // Usando o caminho do JS2
+            const response = await fetch('js/sobre/programas.json');
             if (!response.ok) throw new Error('Não foi possível carregar os programas.');
             
             const programas = await response.json();
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
     async function carregarGaleria() {
         if (!galeriaContainer) return; // Só executa na página certa
         try {
-            const response = await fetch('js/galeria/galeria.json'); // (Verifique este caminho)
+            const response = await fetch('js/galeria/galeria.json'); 
             if (!response.ok) throw new Error('Não foi possível carregar a galeria.');
 
             const items = await response.json();
@@ -92,7 +92,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 `;
                 
-                // Adiciona listener para o lightbox da galeria
                 card.addEventListener('click', () => {
                     const overlay = document.getElementById('lightbox-overlay');
                     const img = document.getElementById('lightbox-image');
@@ -115,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function() {
     async function carregarProjetos() {
         if (!projetosContainer) return; // Só executa na página certa
         try {
-            const response = await fetch('js/projetos/projetos.json'); // (Verifique este caminho)
+            const response = await fetch('js/projetos/projetos.json');
             if (!response.ok) throw new Error('Não foi possível carregar os projetos.');
             
             const items = await response.json();
@@ -140,29 +139,24 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 `;
 
-                // Adiciona listener para o modal de projetos
-            card.addEventListener('click', () => {
-                const overlay = document.getElementById('projeto-modal-overlay');
-                if (overlay) {
-                    // Preenche os elementos do modal
-                    document.getElementById('projeto-modal-image').src = item.imagem;
-                    document.getElementById('projeto-modal-titulo').innerText = item.nome;
-                    
-                    // Preenche o "público-alvo" no novo span
-                    const publicoEl = document.getElementById('projeto-modal-publico');
-                    if (item.publico_alvo) {
-                        publicoEl.innerText = item.publico_alvo;
-                        publicoEl.style.display = 'block'; // Garante que seja visível
-                    } else {
-                        publicoEl.style.display = 'none'; // Esconde se não houver público
+                card.addEventListener('click', () => {
+                    const overlay = document.getElementById('projeto-modal-overlay');
+                    if (overlay) {
+                        document.getElementById('projeto-modal-image').src = item.imagem;
+                        document.getElementById('projeto-modal-titulo').innerText = item.nome;
+                        
+                        const publicoEl = document.getElementById('projeto-modal-publico');
+                        if (item.publico_alvo) {
+                            publicoEl.innerText = item.publico_alvo;
+                            publicoEl.style.display = 'block'; 
+                        } else {
+                            publicoEl.style.display = 'none'; 
+                        }
+                        
+                        document.getElementById('projeto-modal-descricao').innerText = item.descricao_detalhada;
+                        overlay.classList.add('visible');
                     }
-                    
-                    document.getElementById('projeto-modal-descricao').innerText = item.descricao_detalhada;
-                    
-                    // Mostra o modal
-                    overlay.classList.add('visible');
-                }
-            });
+                });
                 projetosContainer.appendChild(card);
             });
         } catch (error) {
@@ -177,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function() {
     async function carregarNoticias() {
         if (!noticiasContainer) return; // Só executa na página certa
         try {
-            const response = await fetch('js/noticias/noticias.json'); // (Verifique este caminho)
+            const response = await fetch('js/noticias/noticias.json');
             if (!response.ok) throw new Error('Não foi possível carregar as notícias.');
 
             const items = await response.json();
@@ -199,7 +193,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     </div>
                 `;
 
-                // Adiciona listener para o modal de notícias
                 card.addEventListener('click', () => {
                     const overlay = document.getElementById('noticia-modal-overlay');
                     if (overlay) {
@@ -220,7 +213,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
 
     // --- CHAMADA DE TODAS AS FUNÇÕES DE CARREGAMENTO ---
-    // Cada função só será executada se encontrar seu container específico.
     carregarEventos();
     carregarProgramas();
     carregarGaleria();
@@ -229,7 +221,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     
     // --- LÓGICA PARA FECHAR MODAIS E LIGHTBOX ---
-
+    
     // Lógica de FECHAR o Lightbox da GALERIA
     const lightboxOverlay = document.getElementById('lightbox-overlay');
     const lightboxCloseBtn = document.getElementById('lightbox-close');
@@ -269,4 +261,30 @@ document.addEventListener('DOMContentLoaded', function() {
             if (e.target === noticiaModalOverlay) fecharNoticiaModal();
         });
     }
-});
+
+    
+    /*
+    ========================================
+    LÓGICA DO MENU HAMBURGER (MÓVEL)
+    (Este é o local correto para este código)
+    ========================================
+    */
+    const btnHamburger = document.getElementById('btn-hamburger');
+    const cabecalho = document.querySelector('.cabecalho'); 
+    
+    if (btnHamburger && cabecalho) {
+        btnHamburger.addEventListener('click', () => {
+            // Alterna a classe .menu-aberto no <header>
+            cabecalho.classList.toggle('menu-aberto');
+            
+            // Trava o scroll da página quando o menu está aberto
+            document.body.classList.toggle('no-scroll');
+
+            // Atualiza a acessibilidade (ARIA)
+            const menuAberto = cabecalho.classList.contains('menu-aberto');
+            btnHamburger.setAttribute('aria-expanded', menuAberto);
+            btnHamburger.setAttribute('aria-label', menuAberto ? 'Fechar menu' : 'Abrir menu');
+        });
+    }
+
+}); // <-- FIM DO document.addEventListener
