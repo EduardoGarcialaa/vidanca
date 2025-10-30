@@ -3,28 +3,28 @@
     "categoria": "Público Infantil",
     "titulo": "Aulas de Ballet",
     "imagem": "images/home/turma-bale.png",
-    "link": "noticia-espetaculo.html",
+    "link": "projetos.html",
     "descricao": "Está começando mais uma nova turma de Ballet! Venha conhecer a nossa turma de Ballet, com um espetaculo exclusivo para o nosso píblico infantil."
   },
   {
     "categoria": "Público Infantil",
     "titulo": "Cultura Infância (Secult)",
     "imagem": "images/home/tambatuque.png",
-    "link": "noticia-workshop.html",
+    "link": "projetos.html",
     "descricao": "O projeto Vidança - Tambatuque Das Marias conta inda com o apoio da SECULT-CE através do edital Cultura Infância"
   },
   {
     "categoria": "Público Adulto",
     "titulo": "Retalhos da Vida",
     "imagem": "images/home/costura.png",
-    "link": "https://www.instagram.com/",
+    "link": "projetos.html",
     "descricao": "De primeiro se teceram juntos os espetáculos. Eram muitos olhos e retalhos, passos e panos. E a gente conversava entre um ponto de costura e outro; entre uma dança e outra."
   },
   {
     "categoria": "Público Infantil",
     "titulo": "Cultura Infância (Secult)",
     "imagem": "images/home/cultura-infancia.jpg",
-    "link": "noticia-workshop.html",
+    "link": "projetos.html",
     "descricao": "O projeto Vidança - Tambatuque Das Marias conta inda com o apoio da SECULT-CE através do edital Cultura Infância"
   }
 ]
