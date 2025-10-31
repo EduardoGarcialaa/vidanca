@@ -1155,8 +1155,6 @@ ESTILOS DA PÁGINA "FAÇA PARTE" (Inscrições)
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
-    box-sizing: border-box; /* Adicionado para consistência */
     transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
@@ -1183,6 +1181,7 @@ ESTILOS DA PÁGINA "FAÇA PARTE" (Inscrições)
     box-shadow: 0 5px 20px rgba(0,0,0,0.4);
     transform: scale(0.9);
     transition: transform 0.3s ease;
+    box-sizing: border-box;
 }
 
 /* COMBINADO: Animação 'visible' para todos os modais */
@@ -1206,6 +1205,7 @@ ESTILOS DA PÁGINA "FAÇA PARTE" (Inscrições)
     width: 55%;
     padding: 30px;
     overflow-y: auto;
+    box-sizing: border-box;
 }
 
 .noticia-modal-texto h2 {
@@ -1246,6 +1246,7 @@ ESTILOS DA PÁGINA "FAÇA PARTE" (Inscrições)
     padding: 30px;
     overflow-y: auto;
     background-color: rgba(0, 0, 0, 0.6); 
+    box-sizing: border-box;
 }
 
 .projeto-modal-texto h2 { 
@@ -1449,20 +1450,42 @@ AJUSTES RESPONSIVOS (MODAIS - COMBINADO)
     .inscricoes-grid div:first-child {
         margin-bottom: 40px; 
     }
+    /* ... (outras regras do @media) ... */
+
+    /* Responsividade do Card de Notícia (lista)
+    .noticia-card {
+    (código existente) ...
+    } */ 
+
+    /* ================================================= */
+    /* ===== CORREÇÃO DO MODAL EM TELAS MENORES ===== */
+    /* ================================================= */
+
+    /* 1. Remove o padding do overlay (fundo preto) */
+    #noticia-modal-overlay,
+    #projeto-modal-overlay {
+        padding: 0;
+    }
+
+    /* 2. Faz o modal ocupar a largura correta e adiciona margem */
+    #noticia-modal-content,
+    #projeto-modal-content {
+        width: 100%;
+        margin: 20px 0; /* Cria um espaço em cima e embaixo */
+        border-radius: 0; /* Opcional: remove bordas em telas pequenas */
+    }
+
+    /* 3. Reajusta o botão de fechar para a nova posição */
+    #noticia-modal-close,
+    #projeto-modal-close {
+        top: 25px;
+        right: 25px;
+    }
+
+     /* <-- Este é o } final do seu @media (max-width: 768px) */
 }
 
 @media (max-width: 1000px) {
-    /* Regras de layout de cabeçalho para tablet (quebrou o menu) */
-    /*     .cabecalho .container {
-        flex-direction: column;
-        gap: 15px;
-    }
-    .cabecalho nav ul {
-        gap: 15px;
-        flex-wrap: wrap; 
-        justify-content: center;
-    }
-    */
 
     .cabecalho nav a {
         font-size: 1em; 
