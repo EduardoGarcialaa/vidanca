@@ -1610,6 +1610,34 @@ AJUSTES RESPONSIVOS (MODAIS - COMBINADO)
 ========================================
 */
 @media (max-width: 768px) {
+    /* DENTRO DE @media (max-width: 768px) */
+
+    /* Responsividade do modal (Notícias e Projetos) */
+    .noticia-modal-content {
+        flex-direction: column; /* <-- ESTA É A LINHA MAIS IMPORTANTE */
+        max-height: 80vh;
+    }
+    .noticia-modal-content img {
+        width: 100%;
+        height: 200px;
+    }
+    .noticia-modal-texto {
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box; /* Adicionado para segurança */
+    }
+    .noticia-modal-texto h2 {
+        font-size: 2em;
+    }
+    .modal-close { 
+       color: white !important;
+       background: rgba(0,0,0,0.3);
+       border-radius: 50%;
+       padding: 0 8px 4px 8px;
+       top: 10px;
+       right: 10px;
+       font-size: 2rem;
+    }
     /* COMBINADO: Responsividade do modal de Notícias e Projetos */
     #noticia-modal-content,
     #projeto-modal-content {
