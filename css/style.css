@@ -1363,6 +1363,243 @@ ESTILOS DO LIGHTBOX DA GALERIA
     line-height: 1;
 }
 
+/*
+========================================
+ESTILOS DA PÁGINA "CONTATO"
+========================================
+*/
+
+/* * Garante que a imagem de fundo cubra a página inteira.
+ * Usar 'body::before' é mais performático para overlays de fundo.
+*/
+body.contato-page {
+    position: relative;
+    background-color: var(--cor-fundo); /* Cor de fallback */
+}
+
+body.contato-page::before {
+    content: '';
+    position: fixed; /* Fixo para cobrir tudo */
+    top: 0; left: 0;
+    width: 100%;
+    height: 100vh; /* Altura total da tela */
+    background-image: url('https://assets.website-files.com/565f9056d3eed3ef65c47c2e/5e2281f92e290ce10ec464c1_festival-elo2.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    z-index: -1; /* Fica atrás de todo o conteúdo */
+}
+
+/* * O main isola o conteúdo da página do header/footer
+*/
+main.contato-main {
+    /* Estado inicial da animação (escondido) */
+    opacity: 0;
+    transform: translateY(20px);
+    /* Animação de fade-in para a página inteira */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+/* Classe 'is-visible' será adicionada pelo JS */
+main.contato-main.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Estiliza a seção "Hero" (banner do topo) */
+.contato-hero {
+    position: relative;
+    /* === CORREÇÃO DE RESPONSIVIDADE (dvh) === */
+    height: 50dvh; /* Altura dinâmica da janela */
+    min-height: 300px;
+    /* Adiciona um overlay escuro SOBRE a imagem de fundo */
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    color: #ffffff; 
+}
+
+.contato-hero h1 {
+    font-family: 'Playfair Display', serif; 
+    /* === CORREÇÃO DE RESPONSIVIDADE (clamp) === */
+    font-size: clamp(2.5rem, 5vw, 3.5rem); /* Fonte responsiva */
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.8); 
+    margin: 0; 
+    text-align: center;
+}
+
+/* Estiliza o container com fundo PRETO translúcido. */
+.content-overlay-container {
+    padding: 40px 0; 
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #f0f0f0; 
+}
+
+/* Wrapper que centraliza os cards de contato */
+.contato-lista-wrapper {
+    max-width: 500px; 
+    margin: 0 auto; 
+    padding: 0 20px; 
+}
+
+/* Estiliza cada bloco ('card') de informação. */
+.info-bloco {
+    background-color: #ffffff; 
+    color: var(--cor-texto); 
+    padding: 25px; 
+    border-radius: 4px; 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08); 
+    margin-bottom: 25px; 
+    transition: box-shadow 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.info-bloco:hover {
+    transform: translateY(-5px); 
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12); 
+}
+
+/* Estiliza o container de cada item (ícone + texto). */
+.info-item {
+    display: flex; 
+    align-items: center; 
+    font-family: 'Lato', sans-serif; 
+    line-height: 1.6; 
+}
+
+.info-item i {
+    font-size: 20px; 
+    width: 50px; 
+    height: 50px; 
+    background-color: #eee; 
+    box-shadow: 0 3px 8px rgba(0,0,0,0.1); 
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0; 
+}
+
+.info-item .fa-phone-alt,
+.info-item .fa-envelope {
+    color: #C0392B; /* Vermelho */
+}
+
+.info-item p {
+    margin: 0; 
+    padding-left: 20px; 
+    word-break: break-word; /* Garante que emails longos quebrem a linha */
+}
+
+.info-item p strong {
+    display: block; 
+    color: var(--cor-texto); 
+    font-size: 1.1em; 
+    margin-bottom: 2px; 
+}
+
+.info-item p a {
+    color: var(--cor-principal); /* Usa a cor principal do site */
+    font-weight: 700; 
+    text-decoration: none; 
+    transition: color 0.3s; 
+}
+
+.info-item p a:hover {
+    text-decoration: underline; 
+}
+
+/* Estiliza a seção PRETA de Localização. */
+.localizacao-section {
+    background-color: #1a1a1a; 
+    padding: 80px 0 60px 0; 
+    margin-bottom: 0; 
+    color: #f0f0f0; 
+}
+
+/* Estiliza o container Flexbox para as colunas de mapa e endereço. */
+.localizacao-flex {
+    max-width: 800px; 
+    margin: 0 auto; 
+    padding: 0 20px; 
+    display: flex;
+    /* === CORREÇÃO DE RESPONSIVIDADE === */
+    flex-wrap: wrap; /* Permite quebrar em telas menores. */
+    gap: 40px; 
+    align-items: center; 
+}
+
+/* Estiliza a coluna do mapa. */
+.mapa-coluna {
+    flex: 1; 
+    min-width: 300px; /* Largura mínima antes de quebrar */
+}
+
+.mapa-container {
+    position: relative; 
+    width: 100%; 
+    padding-top: 75%; /* Proporção 4:3 */
+    border-radius: 8px; 
+    overflow: hidden; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+}
+
+.mapa-container iframe {
+    position: absolute; 
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: 0; 
+}
+
+/* Estiliza a coluna do endereço e horário. */
+.endereco-coluna {
+    flex: 1; 
+    min-width: 300px; /* Largura mínima antes de quebrar */
+}
+
+.endereco-coluna .info-item:first-child {
+    margin-bottom: 35px; 
+}
+
+.endereco-coluna .info-item i {
+    background-color: rgba(255,255,255,0.1); 
+    color: #c67a49; /* Terracota */
+    box-shadow: none; 
+}
+
+.endereco-coluna .info-item {
+    color: #bbbbbb; 
+}
+
+.endereco-coluna .info-item p strong {
+     color: #f0f0f0; 
+}
+
+.endereco-coluna .info-item p {
+    font-size: 0.9em; 
+    line-height: 1.5; 
+    word-break: break-word; /* Garante que o endereço quebre */
+}
+
+/*
+========================================
+AJUSTE DE TEXTO (PÁGINA "CONTATO")
+========================================
+*/
+
+/* Aplica o estilo que antes era do <a> ao <p> */
+.info-bloco .info-item p {
+    color: var(--cor-principal); /* Usa a cor principal do site */
+    font-weight: 700; /* Negrito */
+    padding-left: 20px; 
+    margin: 0;
+}
+
+/* Garante que o <strong> (título) fique com a cor normal */
+.info-bloco .info-item p strong {
+    color: var(--cor-texto); /* Cinza escuro */
+    font-weight: 700; /* Negrito */
+}
+
 /* ==================================================== */
 /* ============ ESTILOS RESPONSIVOS ============ */
 /* ==================================================== */
@@ -1635,14 +1872,6 @@ ESTILOS DO MENU HAMBURGER (MÓVEL)
     .cabecalho.menu-aberto #btn-hamburger .linha:nth-child(3) {
         transform: translateY(-9px) rotate(-45deg);
     }
-
-    /* 1. Esconde a logo principal (do desktop) */
-    /*     .cabecalho .logo-area {
-        display: none;
-    }
-    */ 
-    /* ^^^ REGRA REMOVIDA PARA A LOGO APARECER ^^^ */
-
 
     /* 2. Mostra e estiliza a logo de dentro do menu */
     #menu-principal .logo-no-menu {
