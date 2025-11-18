@@ -1690,6 +1690,101 @@ AJUSTES RESPONSIVOS (MODAIS - COMBINADO)
     }
 }
 
+/*
+========================================
+ESTILOS DO POP-UP DE AVISO (HOME)
+========================================
+*/
+
+#aviso-popup {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 320px;
+    background-color: #ffffff;
+    border-left: 6px solid var(--cor-principal); /* Detalhe vinho na lateral */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+    border-radius: 5px;
+    padding: 20px;
+    z-index: 9999; /* Garante que fique acima de tudo */
+    font-family: var(--fonte-corpo);
+    
+    /* Animação de entrada */
+    transform: translateY(100px); /* Começa descido */
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Efeito de pulo */
+}
+
+/* Classe para mostrar o aviso */
+#aviso-popup.visible {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+.aviso-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.aviso-titulo {
+    font-family: var(--fonte-titulo);
+    color: var(--cor-principal);
+    font-size: 1.3em;
+    margin: 0;
+    font-weight: bold;
+}
+
+.aviso-fechar {
+    background: none;
+    border: none;
+    color: #999;
+    font-size: 1.2em;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+}
+
+.aviso-fechar:hover {
+    color: var(--cor-principal);
+}
+
+.aviso-mensagem {
+    font-size: 0.95em;
+    color: var(--cor-texto);
+    line-height: 1.5;
+    margin-bottom: 15px;
+}
+
+.aviso-link {
+    display: inline-block;
+    background-color: var(--cor-principal);
+    color: white;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.aviso-link:hover {
+    background-color: #6e0000;
+}
+
+/* Responsividade: No celular, ocupa a largura total embaixo */
+@media (max-width: 500px) {
+    #aviso-popup {
+        right: 10px;
+        left: 10px;
+        bottom: 10px;
+        width: auto;
+    }
+}
+
 
 /* --- Outros Ajustes Responsivos --- */
 
@@ -1810,6 +1905,16 @@ ESTILOS DO MENU HAMBURGER (MÓVEL)
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
+/* Estilos para a imagem dentro do aviso */
+.aviso-imagem {
+    max-width: 100%; /* Garante que a imagem não saia do pop-up */
+    height: auto; /* Mantém a proporção da imagem */
+    margin-bottom: 15px; /* Espaçamento abaixo da imagem */
+    border-radius: 4px; /* Pequenas bordas arredondadas */
+    display: block; /* Garante que ocupe sua própria linha */
+    margin-left: auto; /* Centraliza a imagem se ela for menor que o pop-up */
+    margin-right: auto;
+}
 
 /* 2. Regras de Responsividade (quando a tela for menor) */
 @media (max-width: 1400px) {

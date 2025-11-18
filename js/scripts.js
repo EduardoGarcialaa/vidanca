@@ -210,7 +210,80 @@ document.addEventListener('DOMContentLoaded', function() {
             noticiasContainer.innerHTML = '<p>Erro ao carregar as notícias.</p>';
         }
     }
-    
+
+    // --- 6. FUNÇÃO PARA CARREGAR AVISO (Pop-up na Home) ---
+    const avisoContainer = document.getElementById('aviso-container');
+
+    async function carregarAviso() {
+        // 1. Verifica se existe o container e se o usuário já fechou o aviso nesta sessão
+        if (!avisoContainer || sessionStorage.getItem('avisoFechado') === 'true') {
+            return;
+        }
+
+        try {
+            const response = await fetch('js/home/aviso.json');
+            if (!response.ok) throw new Error('Erro ao carregar aviso');
+            
+            const aviso = await response.json();
+
+            // 2. Verifica se o aviso está ativado no JSON
+            if (aviso.ativo === false) {
+                return; // Se estiver "false", não faz nada
+            }
+
+            // 3. Cria o HTML do pop-up
+            const popup = document.createElement('div');
+            popup.id = 'aviso-popup';
+            
+            // --- NOVO: Lógica para imagem ---
+            let imagemHtml = '';
+            if (aviso.imagem) {
+                imagemHtml = `<img src="${aviso.imagem}" alt="Imagem do Aviso" class="aviso-imagem">`;
+            }
+            // --------------------------------
+
+            // Verifica se tem link para mostrar o botão ou não
+            let botaoHtml = '';
+            // Verifica se existe o objeto 'link' e se ele tem 'texto' e 'url'
+            if (aviso.link && aviso.link.texto && aviso.link.url) {
+                botaoHtml = `<a href="${aviso.link.url}" class="aviso-link">${aviso.link.texto}</a>`;
+            }
+
+            popup.innerHTML = `
+                <div class="aviso-header">
+                    <h3 class="aviso-titulo">${aviso.titulo}</h3>
+                    <button id="aviso-fechar" class="aviso-fechar" aria-label="Fechar aviso">
+                        <i class="fa-solid fa-times"></i>
+                    </button>
+                </div>
+                ${imagemHtml} 
+                <p class="aviso-mensagem">${aviso.mensagem}</p>
+                ${botaoHtml}
+            `;
+
+            avisoContainer.appendChild(popup);
+
+            // 4. Adiciona evento de fechar
+            document.getElementById('aviso-fechar').addEventListener('click', () => {
+                popup.classList.remove('visible');
+                // Salva no navegador que o usuário fechou, para não mostrar de novo agora
+                sessionStorage.setItem('avisoFechado', 'true');
+                
+                // Remove do DOM após a animação (0.5s)
+                setTimeout(() => {
+                    popup.remove();
+                }, 500);
+            });
+
+            // 5. Mostra o aviso com um pequeno delay (para não assustar o usuário logo de cara)
+            setTimeout(() => {
+                popup.classList.add('visible');
+            }, 2000); // Aparece 2 segundos depois que o site carrega
+
+        } catch (error) {
+            console.log('Nenhum aviso para mostrar ou erro no JSON.');
+        }
+    }
 
     // --- CHAMADA DE TODAS AS FUNÇÕES DE CARREGAMENTO ---
     carregarEventos();
@@ -218,6 +291,7 @@ document.addEventListener('DOMContentLoaded', function() {
     carregarGaleria();
     carregarProjetos();
     carregarNoticias();
+    carregarAviso();
 
     
     // --- LÓGICA PARA FECHAR MODAIS E LIGHTBOX ---
@@ -266,7 +340,6 @@ document.addEventListener('DOMContentLoaded', function() {
     /*
     ========================================
     LÓGICA DO MENU HAMBURGER (MÓVEL)
-    (Este é o local correto para este código)
     ========================================
     */
     const btnHamburger = document.getElementById('btn-hamburger');
@@ -287,4 +360,4 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-}); // <-- FIM DO document.addEventListener
+}); 
