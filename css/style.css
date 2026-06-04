@@ -1776,10 +1776,11 @@ ESTILOS DO POP-UP DE AVISO (HOME)
     background: none;
     border: none;
     color: #999;
-    font-size: 1.2em;
+    font-size: 1.5em;
     cursor: pointer;
-    padding: 0;
-    line-height: 1;
+    padding: 5px;
+    line-height: 0.6;
+    transition: color 0.3s;
 }
 
 .aviso-fechar:hover {

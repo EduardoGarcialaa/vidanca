@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="aviso-header">
                     <h3 class="aviso-titulo">${aviso.titulo}</h3>
                     <button id="aviso-fechar" class="aviso-fechar" aria-label="Fechar aviso">
-                        <i class="fa-solid fa-times"></i>
+                        &times;
                     </button>
                 </div>
                 ${imagemHtml} 

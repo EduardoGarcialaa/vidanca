@@ -50,7 +50,8 @@ function initLazyLoading() {
 const socialIcons = {
     instagram: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
         <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.338 3.608 1.313.975.975 1.251 2.242 1.313 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.338 2.633-1.313 3.608-.975.975-2.242 1.251-3.608 1.313-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.338-3.608-1.313-.975-.975-1.251-2.242-1.313-3.608-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.062-1.366.338-2.633 1.313-3.608.975-.975 2.242-1.251 3.608-1.313 1.266-.058 1.646-.07 4.85-.07m0-2.163c-3.259 0-3.667.014-4.947.072-1.275.058-2.455.343-3.388 1.276-.933.933-1.218 2.113-1.276 3.388-.058 1.28-.072 1.688-.072 4.947s.014 3.667.072 4.947c.058 1.275.343 2.455 1.276 3.388.933.933 2.113 1.218 3.388 1.276 1.28.058 1.688.072 4.947.072s3.667-.014 4.947-.072c1.275-.058 2.455-.343 3.388-1.276.933-.933 1.218-2.113 1.276-3.388.058-1.28.072-1.688.072-4.947s-.014-3.667-.072-4.947c-.058-1.275-.343-2.455-1.276-3.388-.933-.933-2.113-1.218-3.388-1.276-1.28-.058-1.688-.072-4.947-.072z"></path>
-        <circle cx="12" cy="12" r="3.6"></circle>
+        <circle cx="12" cy="12" r="3.2"></circle>
+        <circle cx="17.5" cy="6.5" r="1.5"></circle>
     </svg>`,
     
     facebook: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -62,7 +63,7 @@ const socialIcons = {
     </svg>`,
     
     mapa: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5z"></path>
+        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path>
     </svg>`
 };
 
@@ -71,12 +72,15 @@ function renderSocialIcons() {
     
     socialLinks.forEach(link => {
         const iconClass = link.querySelector('i')?.className || '';
+        const ariaLabel = link.getAttribute('aria-label')?.toLowerCase() || '';
+        const href = link.getAttribute('href')?.toLowerCase() || '';
+        
         let iconKey = null;
         
-        if (iconClass.includes('instagram')) iconKey = 'instagram';
-        else if (iconClass.includes('facebook')) iconKey = 'facebook';
-        else if (iconClass.includes('youtube')) iconKey = 'youtube';
-        else if (iconClass.includes('map') || iconClass.includes('location')) iconKey = 'mapa';
+        if (iconClass.includes('instagram') || ariaLabel.includes('instagram') || href.includes('instagram')) iconKey = 'instagram';
+        else if (iconClass.includes('facebook') || ariaLabel.includes('facebook') || href.includes('facebook')) iconKey = 'facebook';
+        else if (iconClass.includes('youtube') || ariaLabel.includes('youtube') || href.includes('youtube')) iconKey = 'youtube';
+        else if (iconClass.includes('map') || ariaLabel.includes('mapa') || href.includes('mapacultural')) iconKey = 'mapa';
         
         if (iconKey && socialIcons[iconKey]) {
             link.innerHTML = socialIcons[iconKey];
