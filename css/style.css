@@ -498,16 +498,50 @@ ESTILOS DOS CONTAINERS DINÂMICOS (Grid)
 }
 
 .rodape .social a {
-    color: var(--cor-principal); 
+    color: var(--cor-principal);
     text-decoration: none;
-    margin: 0 12px; 
-    font-size: 1.8em; 
-    display: inline-block; 
-    transition: transform 0.3s, opacity 0.3s;
+    margin: 0 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background-color: var(--cor-destaque);
+    border-radius: 50%;
+    padding: 0;
+    transition: transform 0.25s ease, opacity 0.25s ease;
+    box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+}
+.rodape .social a svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
 }
 .rodape .social a:hover {
-    opacity: 0.7; 
-    transform: scale(1.1); 
+    transform: scale(1.08);
+    opacity: 0.95;
+}
+
+.rodape .social a {
+    border: none; /* limpa possíveis bordas herdadas */
+}
+
+.rodape .social a:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(139,0,0,0.12); /* foco visível, discreto */
+    transform: scale(1.08);
+}
+
+.rodape .social a:active {
+    transform: scale(1.02);
+}
+
+.rodape .social a svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    stroke: none; /* garante que não haja traço extra nos SVGs */
+    display: block;
 }
 
 
