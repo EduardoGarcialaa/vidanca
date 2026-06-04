@@ -100,12 +100,12 @@
 
         /* Estiliza cada bloco ('card') de informação. */
         .info-bloco {
-            background-color: var(--cor-contato-fundo-info); 
-            color: var(--cor-texto); 
-            padding: 25px; 
-            border-radius: 4px; 
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08); 
-            margin-bottom: 25px; 
+            background-color: #ffffff; /* Fundo branco para destacar sobre a imagem */
+            color: #222; 
+            padding: 20px; 
+            border-radius: 6px; 
+            box-shadow: 0 6px 18px rgba(0,0,0,0.18); 
+            margin-bottom: 20px; 
             transition: box-shadow 0.3s ease-out, transform 0.3s ease-out;
         }
         
@@ -122,44 +122,42 @@
             line-height: 1.6; 
         }
         
-        .info-item i {
-            font-size: 20px; 
-            width: 50px; 
-            height: 50px; 
-            background-color: #eee; 
-            box-shadow: 0 3px 8px rgba(0,0,0,0.1); 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0; 
+        /* Ícones SVG dentro dos blocos de informação */
+        .info-item svg {
+            width: 28px;
+            height: 28px;
+            margin-right: 14px;
+            flex-shrink: 0;
+            color: #C0392B; /* cor vibrante para telefone/email */
+            fill: currentColor;
         }
-        
-        .info-item .fa-phone-alt,
-        .info-item .fa-envelope {
-            color: var(--cor-contato-vibrante);
+
+        /* Ícones nas colunas de endereço usam tom quente */
+        .endereco-coluna .info-item svg {
+            color: #c67a49;
+            fill: currentColor;
         }
-        
+
         .info-item p {
             margin: 0; 
-            padding-left: 20px; 
+            padding-left: 0; 
             word-break: break-word; /* Garante que emails longos quebrem a linha */
         }
-        
+
         .info-item p strong {
             display: block; 
-            color: var(--cor-texto); 
-            font-size: 1.1em; 
-            margin-bottom: 2px; 
+            color: #222; 
+            font-size: 1.05em; 
+            margin-bottom: 6px; 
         }
-        
+
         .info-item p a {
             color: var(--cor-principal); /* Usa a cor principal do site */
             font-weight: 700; 
             text-decoration: none; 
             transition: color 0.3s; 
         }
-        
+
         .info-item p a:hover {
             text-decoration: underline; 
         }
@@ -224,6 +222,13 @@
         
         .endereco-coluna .info-item {
             color: var(--cor-contato-texto-medio); 
+            background-color: #ffffff; /* bloco branco para fácil leitura */
+            padding: 18px;
+            border-radius: 6px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
         }
         
         .endereco-coluna .info-item p strong {
@@ -279,20 +284,24 @@
 
                 <section class="info-bloco">
                     <div class="info-item">
-                        <i class="fas fa-phone-alt"></i> 
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:28px;height:28px;margin-right:14px;fill:currentColor;">
+                            <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1 1 0 01.95-.27c1.12.37 2.33.57 3.57.57a1 1 0 011 1V20a1 1 0 01-1 1C9.61 21 3 14.39 3 6a1 1 0 011-1h3.5a1 1 0 011 1c0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                        </svg>
                         <p>
-                            <strong>Telefone:</strong> 
-                            <p href="tel:+558532627599">+55 85 3262-7599</p>
+                            <strong>Telefone:</strong>
+                            +55 85 3262-7599
                         </p>
                     </div>
                 </section>
 
                 <section class="info-bloco">
                     <div class="info-item">
-                        <i class="fas fa-envelope"></i> 
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:28px;height:28px;margin-right:14px;fill:currentColor;">
+                            <path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
                         <p>
-                            <strong>E-mail:</strong> 
-                            <p href="mailto:contato@vidanca.org.br">contato@vidanca.org.br</p>
+                            <strong>E-mail:</strong>
+                            contato@vidanca.org.br
                         </p>
                     </div>
                 </section>
@@ -317,14 +326,18 @@
 
                 <div class="endereco-coluna">
                     <div class="info-item">
-                        <i class="fas fa-map-marker-alt"></i> 
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:28px;height:28px;margin-right:14px;fill:currentColor;">
+                            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/>
+                        </svg>
                         <p>
                             <strong>Endereço:</strong> 
                             Av. L, 400 - Vila Velha, Fortaleza - CE, 60347-800
                         </p>
                     </div>
                     <div class="info-item">
-                        <i class="fas fa-clock"></i> 
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="width:28px;height:28px;margin-right:14px;fill:currentColor;">
+                            <path d="M12 8a1 1 0 011 1v3.59l2.3 2.3a1 1 0 11-1.42 1.42L11 13.41V9a1 1 0 011-1zM12 2a10 10 0 1010 10A10.011 10.011 0 0012 2z"/>
+                        </svg>
                         <p>
                             <strong>Horário de Funcionamento:</strong> 
                             Segunda a Sábado<br> 08:00 às 20:00<br>
