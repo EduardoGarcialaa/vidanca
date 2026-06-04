@@ -88,7 +88,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 card.style.backgroundImage = `url('${item.imagem}')`;
                 card.innerHTML = `
                     <div class="evento-card-content">
-                        <h3 class="titulo">${item.titulo}</h3>
                     </div>
                 `;
                 
@@ -133,7 +132,6 @@ document.addEventListener('DOMContentLoaded', function() {
                         <span class="categoria">${item.tipo_acesso}</span>
                         <div class="projeto-card-texto">
                             <h3 class="titulo">${item.nome}</h3>
-                            <p class="projeto-publico">${item.publico_alvo}</p>
                             <p class="projeto-descricao">${item.descricao_breve}</p>
                         </div>
                     </div>

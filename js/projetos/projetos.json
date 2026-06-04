@@ -1,26 +1,100 @@
 [
   {
-    "nome": "Escola de Dança Vidança",
+    "nome": "Balé Clássico",
     "tipo_acesso": "Público",
-    "publico_alvo": "Crianças e Adolescentes",
-    "descricao_breve": "Aulas gratuitas de dança clássica, ballet, dança funcional e contemporânea.",
-    "descricao_detalhada": "A Escola Vidança é o coração de nossos programas, oferecendo um ambiente seguro e criativo para crianças e adolescentes explorarem diversas modalidades de dança. Além da técnica, focamos na arte-educação e cidadania, usando o movimento como ferramenta de transformação social e expressão pessoal.",
+    "descricao_breve": "Na Vidança, o Balé Clássico é fundamentado na compreensão da fisiologia do corpo, na estética de uma cultura elaborada há séculos e nas técnicas específicas dessa modalidade de dança.",
+    "descricao_detalhada": "Essa prática oferece uma base sólida que une técnica, estética e expressão. Com o domínio dos princípios biomecânicos, nossos alunos desenvolvem precisão, coordenação e flexibilidade, além da estética, criatividade e plasticidade do movimento. Valoriza-se, nesse corpo teórico-prático, a conexão entre conhecimento especializado e manifestações culturais várias, incentivando a pesquisa e a inovação na dança.",
     "imagem": "images/home/contacao.jpg"
   },
   {
-    "nome": "Tambatuque da Vidança",
+    "nome": "Danças Dramáticas",
     "tipo_acesso": "Público",
-    "publico_alvo": "Crianças e Adolescentes",
-    "descricao_breve": "Grupo de percussão formado por crianças da Vila Velha, como expansão expressiva.",
-    "descricao_detalhada": "O Tambatuque é mais que um grupo de percussão; é um projeto de expansão expressiva que já possui sua própria história. Ele vivencia processos de autonomização e inserção nas comunidades, levando a música cênica dos nossos espetáculos para novos palcos e contextos.",
+    "descricao_breve": "As Danças Dramáticas são a saga das populações que fazem o mundo do trabalho e a amorosidade da vida.",
+    "descricao_detalhada": "Nesse sentido, as danças dramáticas são o fulgor das classes populares em seu movimento de transformar a história do mundo. Suas brincadeiras, farsas, entremeios, cordões, bonitezas e cenas populares contam uma vida nem sempre visibilizada. Com seus segredos, histórias, sátiras e aventuras, as danças dramáticas problematizam situações da vida coletiva, por meio de sua expressividade diversificada. É uma celebração da vida e da luta por levá-la adiante.",
     "imagem": "images/home/tambatuque.png"
   },
   {
-    "nome": "Núcleo de Formação e Profissionalização",
+    "nome": "Danças Contemporâneas",
     "tipo_acesso": "Público",
-    "publico_alvo": "Adultos",
-    "descricao_breve": "Formação profissional em Corte e Costura, artesanato e artes viso-plásticas.",
-    "descricao_detalhada": "Este núcleo assume a direção de todos os trabalhos de formação profissional da Associação. O desdobramento fundamental é a profissionalização em Dança e, principalmente, em Corte e Costura, criando uma ambiência educativa de construção da arte e valorizando as matrizes culturais do local.",
-    "imagem": "images/home/costura.png"
+    "descricao_breve": "As Danças Contemporâneas são ensaios de liberdade de expressão que conectam sentimentos e culturas em movimento.",
+    "descricao_detalhada": "Neste estudo, a artisticidade da dança e seus signos se dizem no singular dos gestos, nos experimentos da Dança Pessoal e de contato, bem como no concerto complexo dos movimentos que tornam visível a esteticidade dessa modalidade de arte. As Danças Contemporâneas são criadas a partir de matrizes ou referenciais estéticos mais livres, que fazem diálogos entre práticas de dança de temporalidades diferentes que são (re)visitadas.",
+    "imagem": "images/home/contemporanea.jpg"
+  },
+  {
+    "nome": "Mediação de Leitura e Corporalidade",
+    "tipo_acesso":"Público",
+    "descricao_breve": "A arte de contar histórias com o corpo, a leitura da palavra e do mundo abre portais de saberes",
+    "descricao_detalhada": "Ler palavras e ler o mundo é uma ação formativa permanente na Vidança. E a leitura das palavras e textos são convites para explorar situações possíveis, onde se desvenda questões sociais, suas páginas indo direto ao coração da ação coletiva. Aqui são construídas práticas leitoras que abrem portais para a diversidade de saberes, que também é tecida pela cultura sistematizada e passada por gerações e gerações.",
+    "imagem": "images/home/leitura.jpg"
+  },
+  {
+    "nome": "Artes Viso-Manuais",
+    "tipo_acesso":"Público",
+    "descricao_breve": "As artes viso-manuais na Vidança oportunizam diálogos intergeracionais",
+    "descricao_detalhada": "Na Vidança a artesania da arte faz morada em nossa ancestralidade, onde as mãos criam maravilhas em cores, texturas e formas, linhas, planos e volumes. É onde os figurinos moram em sua tessitura apaixonada dos diálogos intergeracionais. Assim é que as Artes Viso-manuais na Vidança unem  famílias, amigos e comunitários que vão auxiliar a criação dos figurinos dos espetáculos que encenamos.",
+    "imagem": "images/home/costura.jpg"
+  },
+  {
+    "nome": "Karatê",
+    "tipo_acesso":"Público",
+    "descricao_breve": "O Karatê é uma abertura para a diversidade.",
+    "descricao_detalhada": "Seus movimentos são mais do que ação; representam uma jornada de disciplina, equilíbrio e aprimoramento contínuo do corpo e da mente. Na Vidança, é estudo aberto a todas as faixas etárias a partir de cinco anos.",
+    "imagem": "images/home/karate.jpg"
+  },
+  {
+    "nome": "Danças afrodescendentes: a Capoeira em cena",
+    "tipo_acesso":"Público",
+    "descricao_breve": "Dança de liberdade, a capoeira flui na ginga, no molejo e no acervo artístico da corporalidade afrodescendente, trazendo consigo a força de uma tradição que atravessa séculos.",
+    "descricao_detalhada": "Expressão de resistência e identidade cultural, mistura luta, arte, música e jogo, mantendo-se em constante reinvenção no Brasil. Seus movimentos, ora suaves, ora ágeis e precisos, refletem a história de um povo que encontrou na dança e no ritmo uma forma de expressão e luta pela liberdade. Assim, a capoeira segue viva, encantando gerações e se espalhando pelo mundo como um símbolo da cultura afro-brasileira, ao mesmo tempo que é arte altamente codificada.",
+    "imagem": "images/home/capoeira.jpg"
+  },
+  {
+    "nome": "Hip-Hop",
+    "tipo_acesso":"Público",
+    "descricao_breve": "Vozes, movimentos e revolução nas ruas.",
+    "descricao_detalhada": "O hip-hop e o rap, o funk e outras danças juvenis transformam as ruas em palcos de expressão, trazendo consigo as lutas e vozes das juventudes. Ocupam praças, avenidas e esquinas, tornando-se uma movimentação vibrante, onde batidas marcantes e passos cheios de ritmo se entrelaçam com a riqueza da cultura afrodescendente, sobretudo. Mais do que um estilo musical ou uma forma de dança, o hip-hop é uma força urbana que percorre as cidades, contestando o que precisa mudar e dando vida ao novo na cena pública. Na Vidança, tem-se estudos regulares de Danças de Rua; no momento especialmente oferecemos o hip-hop.",
+    "imagem": "images/home/hip-hop.jpg"
+  },
+  {
+    "nome": "Percussão",
+    "tipo_acesso":"Público",
+    "descricao_breve": "Na Vidança, o estudo da percussão se torna um verdadeiro diálogo entre sonoridades e ritmos.",
+    "descricao_detalhada": "As batidas dos instrumentos entrelaçam-se como uma conversa vibrante, criando uma gramática musical rica e expressiva. Cada som carrega nuances e intensidades que contribuem para a construção de uma identidade sonora própria. A percussão na música cênica se transforma em uma linguagem viva, onde a escuta atenta e a experimentação constante impulsionam a criatividade. Esse processo não apenas amplia as possibilidades artísticas, mas também fortalece a sensibilidade musical, permitindo uma conexão profunda entre ritmo, movimento e expressão, inclusive em situações espetaculares organizadas. Na Vidança, a percussão pulsa como um elemento essencial da criação em Dança, dando vida a novas formas de composição, interpretação e performance.",
+    "imagem": "images/home/percussão.jpg"
+  },
+  {
+    "nome": "Flauta",
+    "tipo_acesso":"Público",
+    "descricao_breve": "A formação em Dança inclui a música cênica, evidenciando a necessidade de um núcleo dedicado a essa dimensão musical.",
+    "descricao_detalhada": "Nesse colo, se inclui a musicalização básica, onde situamos o estudo da flauta. Desde a infância, as flautas sopram encantamento. Aos poucos, infância, juventudes e experiência musical se entrelaçam com a construção do conhecimento musical das culturas, contribuindo para os desdobramentos expressivos que enriquecem a formação em Dança.",
+    "imagem": "images/home/flauta.jpg"
+  },
+  {
+    "nome": "Corte e Costura",
+    "tipo_acesso":"Público",
+    "descricao_breve": "Aqui, até mesmo os Retalhos se movem, recriam formas e transformam o que se diz também no seu avesso e nos contrários, nas linhas e entrelinhas das costuras e sua mostração junto dos Figurinos, Adereços e Cenários em Dança.",
+    "descricao_detalhada": "Aqui, até mesmo os Retalhos se movem, recriam formas e transformam o que se diz também no seu avesso e nos contrários, nas linhas e entrelinhas das costuras e sua mostração junto dos Figurinos, Adereços e Cenários em Dança. Este estudo é um núcleo fundamental da Expressão Visomanual, e por meio dele se realiza os diálogos intergeracionais, que unem amigos, famílias e comunitários. ",
+    "imagem": "images/home/corte-custura.jpg"
+  },
+  {
+    "nome": "Dança Funcional",
+    "tipo_acesso":"Público",
+    "descricao_breve": "A dança funcional é uma prática que integra diversos estilos de Dança, oferecendo uma experiência dinâmica e inclusiva, voltada à expressividade do mundo juvenil e adultos, em todas as suas faixas etárias.",
+    "descricao_detalhada": "A dança funcional é uma prática que integra diversos estilos de Dança, oferecendo uma experiência dinâmica e inclusiva, voltada à expressividade do mundo juvenil e adultos, em todas as suas faixas etárias.",
+    "imagem": "images/home/Funcional.jpg"
+  },
+  {
+    "nome": "Arte e Inclusão",
+    "tipo_acesso":"Público",
+    "descricao_breve": "Promove a instrução em Libras e o uso de tecnologias assistivas, objetivando tornar a arte acessível e construir pontes para a participação social e solidária dos coletivos.",
+    "descricao_detalhada": "Promove a instrução em Libras e o uso de tecnologias assistivas, objetivando tornar a arte acessível e construir pontes para a participação social e solidária dos coletivos.",
+    "imagem": "images/home/Libras.jpeg"
+  },
+  {
+    "nome": "Educação Financeira",
+    "tipo_acesso":"Público",
+    "descricao_breve": "A arte de construir um futuro consciente se faz com múltiplas dimensões do ser.",
+    "descricao_detalhada": "Aprender sobre educação financeira desde cedo é essencial para crianças, jovens e adolescentes. Na Vidança, integramos a educação financeira à nossa visão transdisciplinar.",
+    "imagem": "images/home/educacao-financeira-alunos.jpeg"
   }
 ]
